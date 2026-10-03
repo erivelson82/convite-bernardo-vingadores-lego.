@@ -1,0 +1,375 @@
+/* =========================================================
+   TELA DE ABERTURA
+========================================================= */
+
+.abertura {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 25px;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #12356b 0%,
+            #07152f 55%,
+            #020711 100%
+        );
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+}
+
+
+/* brilho central */
+
+.abertura::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 300px;
+
+    height: 300px;
+
+    border-radius: 50%;
+
+    background: rgba(
+        255,
+        212,
+        0,
+        0.12
+    );
+
+    filter: blur(45px);
+
+}
+
+
+/* conteúdo */
+
+.abertura-conteudo {
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 500px;
+
+    animation:
+        entradaAbertura 1s ease;
+}
+
+
+/* raio */
+
+.abertura-icon {
+
+    font-size: 70px;
+
+    margin-bottom: 15px;
+
+    animation:
+        raio 1.5s infinite;
+}
+
+
+/* alerta */
+
+.abertura-alerta {
+
+    margin-bottom: 15px;
+
+    font-size: 18px;
+
+    font-weight: 900;
+
+    color: #ffd400;
+
+    letter-spacing: 2px;
+}
+
+
+/* título */
+
+.abertura-titulo {
+
+    margin: 0;
+
+    font-size: 48px;
+
+    line-height: 1.05;
+
+    font-weight: 900;
+
+    color: #ffffff;
+
+    text-shadow:
+        4px 4px 0 #d71920,
+        8px 8px 0 rgba(
+            0,
+            0,
+            0,
+            0.4
+        );
+}
+
+
+/* texto */
+
+.abertura-texto {
+
+    margin-top: 25px;
+
+    font-size: 19px;
+
+    line-height: 1.5;
+}
+
+
+.abertura-subtexto {
+
+    margin-top: 10px;
+
+    font-size: 15px;
+
+    color: #cccccc;
+
+    line-height: 1.5;
+}
+
+
+/* botão */
+
+.btn-entrar {
+
+    margin-top: 30px;
+
+    padding: 18px 30px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #ffd400;
+
+    color: #111111;
+
+    font-size: 17px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 0 #a87900;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.btn-entrar:hover {
+
+    transform: translateY(4px);
+
+    box-shadow:
+        0 3px 0 #a87900;
+}
+
+
+.btn-entrar:active {
+
+    transform: translateY(7px);
+
+    box-shadow:
+        0 0 0 #a87900;
+}
+
+
+/* =========================================================
+   FECHAMENTO DA ABERTURA
+========================================================= */
+
+.abertura.fechar {
+
+    opacity: 0;
+
+    transform: scale(1.1);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   CONVITE ESCONDIDO
+========================================================= */
+
+.convite {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(20px);
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease,
+        visibility 0.7s ease;
+}
+
+
+/* convite revelado */
+
+.convite.mostrar {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   ANIMAÇÕES DA ABERTURA
+========================================================= */
+
+@keyframes entradaAbertura {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(30px)
+            scale(0.95);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+@keyframes raio {
+
+    0% {
+
+        transform:
+            scale(1)
+            rotate(0deg);
+    }
+
+    50% {
+
+        transform:
+            scale(1.12)
+            rotate(-5deg);
+    }
+
+    100% {
+
+        transform:
+            scale(1)
+            rotate(0deg);
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .abertura {
+
+        padding: 20px;
+    }
+
+
+    .abertura-icon {
+
+        font-size: 55px;
+    }
+
+
+    .abertura-alerta {
+
+        font-size: 15px;
+
+        letter-spacing: 1.5px;
+    }
+
+
+    .abertura-titulo {
+
+        font-size: 38px;
+    }
+
+
+    .abertura-texto {
+
+        font-size: 17px;
+    }
+
+
+    .abertura-subtexto {
+
+        font-size: 14px;
+    }
+
+
+    .btn-entrar {
+
+        width: 100%;
+
+        max-width: 320px;
+
+        padding: 17px 20px;
+
+        font-size: 15px;
+    }
+
+}
+
+
+/* =========================================================
+   CELULARES PEQUENOS
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .abertura-titulo {
+
+        font-size: 33px;
+    }
+
+
+    .abertura-icon {
+
+        font-size: 48px;
+    }
+
+}
