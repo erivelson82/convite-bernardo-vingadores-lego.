@@ -1,56 +1,46 @@
-```javascript id="w8k2pz"
 /* =========================================================
-   BERNARDO 4 ANOS
+   CONVITE BERNARDO FURTADO
    VINGADORES LEGO
-   JAVASCRIPT — V2
-========================================================= */
+   SCRIPT V2.1
+   ========================================================= */
 
 
 /* =========================================================
-   CONFIGURAÇÕES
-========================================================= */
+   CONFIGURAÇÕES DA FESTA
+   ========================================================= */
 
-// Data e horário da festa
-const DATA_FESTA = "2026-11-29T12:00";
+const DATA_FESTA = "2026-12-12T12:00:00";
 
-// Número do WhatsApp do responsável.
-//
-// IMPORTANTE:
-// Coloque aqui o número com DDI + DDD,
-// somente números.
-//
-// Exemplo:
-// 5521999999999
-//
-// Por enquanto deixamos vazio para evitar
-// enviar para um número incorreto.
+/*
+   Coloque aqui o número do WhatsApp futuramente.
+
+   Exemplo:
+   const WHATSAPP = "5521999999999";
+
+   Por enquanto deixamos vazio.
+*/
 const WHATSAPP = "";
 
-// Link da localização.
-//
-// Depois vamos colocar o endereço/local exato.
-// Por enquanto deixamos o Google Maps como destino
-// provisório.
+
+/*
+   Localização da festa.
+
+   Quando tiver o endereço/link correto do Google Maps,
+   substitua o endereço abaixo.
+*/
 const LOCALIZACAO =
     "https://www.google.com/maps/search/?api=1&query=Minha+Casa";
 
 
 /* =========================================================
-   ELEMENTOS
-========================================================= */
+   ELEMENTOS DA PÁGINA
+   ========================================================= */
 
-const abertura =
-    document.getElementById("abertura");
+const abertura = document.getElementById("abertura");
+const convite = document.getElementById("convite");
 
-const convite =
-    document.getElementById("convite");
-
-const btnEntrar =
-    document.getElementById("btnEntrar");
-
-const btnConfirmar =
-    document.getElementById("btnConfirmar");
-
+const btnEntrar = document.getElementById("btnEntrar");
+const btnConfirmar = document.getElementById("btnConfirmar");
 const btnConfirmarFinal =
     document.getElementById("btnConfirmarFinal");
 
@@ -66,47 +56,74 @@ const countdown =
 
 /* =========================================================
    ENTRAR NA MISSÃO
-========================================================= */
+   ========================================================= */
 
 function entrarNaMissao() {
 
-    if (!abertura || !convite) {
+    const telaAbertura =
+        document.getElementById("abertura");
+
+    const telaConvite =
+        document.getElementById("convite");
+
+
+    /*
+       Verificação de segurança.
+    */
+
+    if (!telaAbertura || !telaConvite) {
+
+        alert(
+            "Não foi possível carregar o convite. " +
+            "Verifique se o HTML está correto."
+        );
+
         return;
     }
 
-    abertura.classList.add("fechar");
+
+    /*
+       Fecha a tela inicial.
+    */
+
+    telaAbertura.classList.add("fechar");
+
+
+    /*
+       Mostra o convite depois da animação.
+    */
 
     setTimeout(function () {
 
-        convite.classList.add("mostrar");
+        telaConvite.classList.add("mostrar");
 
         window.scrollTo({
             top: 0,
-            behavior: "instant"
+            left: 0,
+            behavior: "smooth"
         });
 
     }, 700);
+
 }
 
 
 /* =========================================================
-   CONFIRMAÇÃO DE PRESENÇA
-========================================================= */
+   CONFIRMAR PRESENÇA
+   ========================================================= */
 
 function confirmarPresenca() {
 
-    const mensagem =
-        "Olá! Quero confirmar minha presença no aniversário de 4 anos do Bernardo! 🎉🦸";
-
     /*
-     * Se o número do WhatsApp estiver configurado,
-     * abrimos diretamente a conversa.
-     *
-     * Se ainda estiver vazio, usamos o compartilhamento
-     * geral do celular.
-     */
+       Se o WhatsApp estiver configurado,
+       abre uma conversa diretamente.
+    */
 
-    if (WHATSAPP.trim() !== "") {
+    if (WHATSAPP && WHATSAPP.trim() !== "") {
+
+        const mensagem =
+            "Olá! Quero confirmar minha presença " +
+            "na festa de 4 anos do Bernardo! 🦸⚡🎂";
 
         const url =
             "https://wa.me/" +
@@ -114,123 +131,142 @@ function confirmarPresenca() {
             "?text=" +
             encodeURIComponent(mensagem);
 
-        window.open(
-            url,
-            "_blank",
-            "noopener,noreferrer"
-        );
+        window.open(url, "_blank");
 
         return;
     }
 
-    compartilharTexto(
-        mensagem
-    );
+
+    /*
+       Enquanto o WhatsApp não estiver configurado,
+       usamos o compartilhamento do próprio celular.
+    */
+
+    compartilharTexto();
+
 }
 
 
 /* =========================================================
-   COMPARTILHAMENTO
-========================================================= */
+   COMPARTILHAR CONVITE
+   ========================================================= */
 
 async function compartilharConvite() {
 
-    const dados = {
+    const texto =
+        "🦸⚡ VOCÊ FOI CONVOCADO! ⚡🦸\n\n" +
 
-        title:
-            "🎉 Bernardo faz 4 anos!",
+        "Bernardo está completando 4 anos! 🎂\n\n" +
 
-        text:
-            "Você foi convocado para uma missão muito especial! 🦸⚡",
+        "📅 12 de dezembro de 2026\n" +
+        "⏰ 12:00\n" +
+        "📍 Minha casa\n\n" +
 
-        url:
-            window.location.href
+        "Venha participar dessa missão especial! 🚀\n\n" +
 
-    };
+        window.location.href;
+
 
     /*
-     * Em celulares modernos,
-     * navigator.share abre o menu nativo
-     * de compartilhamento.
-     */
+       Compartilhamento nativo do celular.
+    */
 
-    if (
-        navigator.share &&
-        typeof navigator.share === "function"
-    ) {
+    if (navigator.share) {
 
         try {
 
-            await navigator.share(dados);
+            await navigator.share({
+
+                title:
+                    "Bernardo 4 Anos - Vingadores LEGO",
+
+                text: texto,
+
+                url: window.location.href
+
+            });
 
             return;
 
         } catch (erro) {
 
             /*
-             * Se o usuário cancelar o compartilhamento,
-             * simplesmente não fazemos nada.
-             */
+               O usuário pode simplesmente ter
+               fechado a janela de compartilhamento.
+            */
 
-            if (
-                erro &&
-                erro.name === "AbortError"
-            ) {
-                return;
-            }
+            console.log(
+                "Compartilhamento cancelado."
+            );
 
         }
+
     }
 
 
     /*
-     * Fallback:
-     * copia o endereço do convite.
-     */
+       Caso o navegador não tenha navigator.share,
+       tenta copiar o convite.
+    */
 
-    compartilharTexto(
-        window.location.href
-    );
+    compartilharTexto();
+
 }
 
 
 /* =========================================================
-   COMPARTILHAR TEXTO / FALLBACK
-========================================================= */
+   COPIAR TEXTO DO CONVITE
+   ========================================================= */
 
-async function compartilharTexto(texto) {
+async function compartilharTexto() {
+
+    const texto =
+        "🦸⚡ VOCÊ FOI CONVOCADO! ⚡🦸\n\n" +
+
+        "Bernardo está completando 4 anos! 🎂\n\n" +
+
+        "📅 12 de dezembro de 2026\n" +
+        "⏰ 12:00\n" +
+        "📍 Minha casa\n\n" +
+
+        "Venha participar dessa missão especial! 🚀\n\n" +
+
+        window.location.href;
+
 
     /*
-     * Tenta utilizar a área de transferência.
-     */
+       Tenta utilizar a área de transferência.
+    */
 
     if (
         navigator.clipboard &&
-        typeof navigator.clipboard.writeText === "function"
+        window.isSecureContext
     ) {
 
         try {
 
-            await navigator.clipboard.writeText(
-                texto
-            );
+            await navigator.clipboard.writeText(texto);
 
             mostrarMensagem(
-                "📋 Link copiado! Agora é só enviar para seus convidados."
+                "Convite copiado! Agora é só enviar para seus convidados. 🚀"
             );
 
             return;
 
         } catch (erro) {
 
-            // Continua para o próximo método.
+            console.log(
+                "Não foi possível copiar automaticamente."
+            );
+
         }
+
     }
 
 
     /*
-     * Fallback para navegadores antigos.
-     */
+       Fallback para navegadores mais antigos.
+    */
 
     const textarea =
         document.createElement("textarea");
@@ -238,249 +274,233 @@ async function compartilharTexto(texto) {
     textarea.value = texto;
 
     textarea.style.position = "fixed";
-    textarea.style.opacity = "0";
+    textarea.style.left = "-9999px";
 
-    document.body.appendChild(
-        textarea
-    );
+    document.body.appendChild(textarea);
 
+    textarea.focus();
     textarea.select();
 
     try {
 
-        document.execCommand(
-            "copy"
-        );
+        document.execCommand("copy");
 
         mostrarMensagem(
-            "📋 Link copiado! Agora é só enviar para seus convidados."
+            "Convite copiado! 🚀"
         );
 
     } catch (erro) {
 
-        mostrarMensagem(
-            "Copie o endereço do site e envie para seus convidados."
+        alert(
+            "Copie manualmente este convite:\n\n" +
+            texto
         );
 
     }
 
-    textarea.remove();
+    document.body.removeChild(textarea);
+
 }
 
 
 /* =========================================================
    MENSAGEM TEMPORÁRIA
-========================================================= */
+   ========================================================= */
 
-function mostrarMensagem(texto) {
+function mostrarMensagem(mensagem) {
 
-    const mensagemExistente =
-        document.querySelector(
-            ".mensagem-temporaria"
-        );
+    /*
+       Procura uma mensagem existente.
+    */
 
-    if (mensagemExistente) {
-        mensagemExistente.remove();
+    let aviso =
+        document.getElementById("mensagemAviso");
+
+
+    /*
+       Se não existir, cria.
+    */
+
+    if (!aviso) {
+
+        aviso =
+            document.createElement("div");
+
+        aviso.id = "mensagemAviso";
+
+        aviso.style.position = "fixed";
+        aviso.style.left = "50%";
+        aviso.style.bottom = "25px";
+        aviso.style.transform =
+            "translateX(-50%)";
+
+        aviso.style.zIndex = "10000";
+
+        aviso.style.width = "calc(100% - 40px)";
+        aviso.style.maxWidth = "420px";
+
+        aviso.style.padding = "16px 20px";
+
+        aviso.style.borderRadius = "14px";
+
+        aviso.style.background =
+            "rgba(0, 0, 0, 0.92)";
+
+        aviso.style.color = "#ffffff";
+
+        aviso.style.textAlign = "center";
+
+        aviso.style.fontWeight = "700";
+
+        aviso.style.boxShadow =
+            "0 10px 30px rgba(0,0,0,.35)";
+
+        aviso.style.opacity = "0";
+
+        aviso.style.transition =
+            "opacity .3s ease";
+
+        document.body.appendChild(aviso);
+
     }
 
-    const mensagem =
-        document.createElement("div");
 
-    mensagem.className =
-        "mensagem-temporaria";
+    aviso.textContent = mensagem;
 
-    mensagem.textContent =
-        texto;
+    aviso.style.opacity = "1";
 
-    mensagem.style.position =
-        "fixed";
-
-    mensagem.style.left =
-        "50%";
-
-    mensagem.style.bottom =
-        "25px";
-
-    mensagem.style.transform =
-        "translateX(-50%)";
-
-    mensagem.style.width =
-        "calc(100% - 30px)";
-
-    mensagem.style.maxWidth =
-        "420px";
-
-    mensagem.style.padding =
-        "15px 18px";
-
-    mensagem.style.borderRadius =
-        "12px";
-
-    mensagem.style.background =
-        "#111111";
-
-    mensagem.style.color =
-        "#ffffff";
-
-    mensagem.style.border =
-        "2px solid #ffd400";
-
-    mensagem.style.textAlign =
-        "center";
-
-    mensagem.style.fontSize =
-        "14px";
-
-    mensagem.style.fontWeight =
-        "700";
-
-    mensagem.style.zIndex =
-        "10000";
-
-    mensagem.style.boxShadow =
-        "0 8px 30px rgba(0,0,0,0.4)";
-
-    document.body.appendChild(
-        mensagem
-    );
 
     setTimeout(function () {
 
-        mensagem.style.opacity =
-            "0";
-
-        mensagem.style.transition =
-            "opacity 0.4s ease";
-
-        setTimeout(function () {
-
-            mensagem.remove();
-
-        }, 400);
+        aviso.style.opacity = "0";
 
     }, 3000);
+
 }
 
 
 /* =========================================================
-   MISSÃO CONFIRMADA
-========================================================= */
+   MOSTRAR CONFIRMAÇÃO
+   ========================================================= */
 
 function mostrarConfirmacao() {
 
     const confirmacao =
-        document.getElementById(
-            "confirmacao"
-        );
+        document.getElementById("confirmacao");
+
 
     if (!confirmacao) {
         return;
     }
 
-    confirmacao.innerHTML = `
-        <div class="confirmacao-conteudo">
 
-            <div class="confirmacao-icon">
-                🎉
-            </div>
+    const conteudo =
+        confirmacao.querySelector(
+            ".confirmacao-conteudo"
+        );
 
-            <p class="secao-tag">
-                MISSÃO ACEITA!
-            </p>
 
-            <h2>
-                PRESENÇA CONFIRMADA!
-            </h2>
+    if (!conteudo) {
+        return;
+    }
 
-            <p>
-                O Bernardo está esperando
-                você para essa grande aventura!
-            </p>
 
-            <div
-                style="
-                    margin-top: 20px;
-                    font-size: 42px;
-                "
-            >
-                🦸 ⚡ 🧱 🎂 🎉
-            </div>
+    conteudo.innerHTML = `
 
+        <div class="confirmacao-icon">
+            🦸
         </div>
+
+        <p class="secao-subtitulo">
+            MISSÃO ACEITA!
+        </p>
+
+        <h2>
+            PRESENÇA CONFIRMADA!
+        </h2>
+
+        <p>
+            Bernardo está muito feliz em ter
+            você nessa aventura! 🎂⚡
+        </p>
+
+        <div style="
+            font-size: 3rem;
+            margin-top: 20px;
+        ">
+            🎉 🦸 ⚡ 🎂
+        </div>
+
     `;
 
-    confirmacao.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-    });
 }
 
 
 /* =========================================================
-   LOCALIZAÇÃO
-========================================================= */
+   ABRIR LOCALIZAÇÃO
+   ========================================================= */
 
 function abrirLocalizacao() {
 
     if (!LOCALIZACAO) {
 
         mostrarMensagem(
-            "📍 A localização ainda será configurada."
+            "A localização ainda não foi configurada."
         );
 
         return;
     }
 
+
     window.open(
         LOCALIZACAO,
-        "_blank",
-        "noopener,noreferrer"
+        "_blank"
     );
+
 }
 
 
 /* =========================================================
    CONTAGEM REGRESSIVA
-========================================================= */
+   ========================================================= */
 
-const dataFesta =
-    new Date(
-        DATA_FESTA
-    ).getTime();
+function atualizarContador() {
 
-
-function atualizarContagem() {
-
-    if (!countdown) {
-        return;
-    }
+    const dataFesta =
+        new Date(DATA_FESTA).getTime();
 
     const agora =
-        Date.now();
+        new Date().getTime();
 
     const distancia =
         dataFesta - agora;
 
 
     /*
-     * Festa já começou
-     */
+       Se a festa já começou/terminou.
+    */
 
-    if (
-        Number.isNaN(dataFesta) ||
-        distancia <= 0
-    ) {
+    if (distancia <= 0) {
 
-        countdown.innerHTML = `
-            <div class="tempo">
-                <div style="grid-column: 1 / -1;">
-                    <strong>🎉</strong>
-                    <span>
-                        A MISSÃO COMEÇOU!
-                    </span>
-                </div>
-            </div>
-        `;
+        atualizarNumero(
+            "dias",
+            "00"
+        );
+
+        atualizarNumero(
+            "horas",
+            "00"
+        );
+
+        atualizarNumero(
+            "minutos",
+            "00"
+        );
+
+        atualizarNumero(
+            "segundos",
+            "00"
+        );
 
         return;
     }
@@ -495,94 +515,96 @@ function atualizarContagem() {
 
     const horas =
         Math.floor(
-            (
-                distancia %
-                (1000 * 60 * 60 * 24)
-            ) /
+            (distancia %
+                (1000 * 60 * 60 * 24)) /
             (1000 * 60 * 60)
         );
 
 
     const minutos =
         Math.floor(
-            (
-                distancia %
-                (1000 * 60 * 60)
-            ) /
+            (distancia %
+                (1000 * 60 * 60)) /
             (1000 * 60)
         );
 
 
     const segundos =
         Math.floor(
-            (
-                distancia %
-                (1000 * 60)
-            ) /
+            (distancia %
+                (1000 * 60)) /
             1000
         );
 
 
-    countdown.innerHTML = `
-
-        <div class="tempo">
-
-            <div>
-                <strong>
-                    ${dias}
-                </strong>
-
-                <span>
-                    DIAS
-                </span>
-            </div>
+    atualizarNumero(
+        "dias",
+        formatarNumero(dias)
+    );
 
 
-            <div>
-                <strong>
-                    ${horas}
-                </strong>
-
-                <span>
-                    HORAS
-                </span>
-            </div>
+    atualizarNumero(
+        "horas",
+        formatarNumero(horas)
+    );
 
 
-            <div>
-                <strong>
-                    ${minutos}
-                </strong>
-
-                <span>
-                    MIN
-                </span>
-            </div>
+    atualizarNumero(
+        "minutos",
+        formatarNumero(minutos)
+    );
 
 
-            <div>
-                <strong>
-                    ${segundos}
-                </strong>
+    atualizarNumero(
+        "segundos",
+        formatarNumero(segundos)
+    );
 
-                <span>
-                    SEG
-                </span>
-            </div>
+}
 
-        </div>
-    `;
+
+/* =========================================================
+   ATUALIZAR NÚMERO
+   ========================================================= */
+
+function atualizarNumero(id, valor) {
+
+    const elemento =
+        document.getElementById(id);
+
+    if (elemento) {
+
+        elemento.textContent =
+            valor;
+
+    }
+
+}
+
+
+/* =========================================================
+   FORMATAR NÚMERO
+   ========================================================= */
+
+function formatarNumero(numero) {
+
+    return String(numero)
+        .padStart(2, "0");
+
 }
 
 
 /* =========================================================
    EVENTOS
-========================================================= */
-
+   ========================================================= */
 
 /*
- * Botão da tela de abertura
- */
+   O botão de entrada também possui
+   onclick diretamente no HTML.
+
+   Aqui adicionamos o evento como
+   segunda camada de segurança.
+*/
 
 if (btnEntrar) {
 
@@ -594,10 +616,6 @@ if (btnEntrar) {
 }
 
 
-/*
- * Botão principal de confirmação
- */
-
 if (btnConfirmar) {
 
     btnConfirmar.addEventListener(
@@ -608,43 +626,15 @@ if (btnConfirmar) {
 }
 
 
-/*
- * Botão final de confirmação
- */
-
 if (btnConfirmarFinal) {
 
     btnConfirmarFinal.addEventListener(
         "click",
-        function () {
-
-            mostrarConfirmacao();
-
-            /*
-             * Também abre o WhatsApp
-             * se o número já tiver sido configurado.
-             */
-
-            if (
-                WHATSAPP.trim() !== ""
-            ) {
-
-                setTimeout(
-                    confirmarPresenca,
-                    500
-                );
-
-            }
-
-        }
+        mostrarConfirmacao
     );
 
 }
 
-
-/*
- * Botão compartilhar
- */
 
 if (btnCompartilhar) {
 
@@ -656,21 +646,11 @@ if (btnCompartilhar) {
 }
 
 
-/*
- * Botão localização
- */
-
 if (btnLocalizacao) {
 
     btnLocalizacao.addEventListener(
         "click",
-        function (evento) {
-
-            evento.preventDefault();
-
-            abrirLocalizacao();
-
-        }
+        abrirLocalizacao
     );
 
 }
@@ -678,43 +658,52 @@ if (btnLocalizacao) {
 
 /* =========================================================
    INICIALIZAÇÃO
-========================================================= */
-
-atualizarContagem();
-
-
-/*
- * Atualiza o contador a cada segundo.
- */
-
-const intervaloContador =
-    setInterval(
-        atualizarContagem,
-        1000
-    );
-
-
-/*
- * Limpa o intervalo quando a página
- * deixa de estar ativa.
- */
+   ========================================================= */
 
 document.addEventListener(
-    "visibilitychange",
+    "DOMContentLoaded",
     function () {
 
-        if (
-            document.hidden
-        ) {
+        /*
+           Atualiza o contador imediatamente.
+        */
 
-            clearInterval(
-                intervaloContador
-            );
+        atualizarContador();
 
-        }
+
+        /*
+           Atualiza o contador a cada segundo.
+        */
+
+        setInterval(
+            atualizarContador,
+            1000
+        );
 
     }
 );
-```
 
 
+/* =========================================================
+   DISPONIBILIZA A FUNÇÃO PARA O HTML
+   ========================================================= */
+
+/*
+   Isso garante que:
+
+   onclick="entrarNaMissao()"
+
+   consiga encontrar a função.
+*/
+
+window.entrarNaMissao =
+    entrarNaMissao;
+
+window.confirmarPresenca =
+    confirmarPresenca;
+
+window.compartilharConvite =
+    compartilharConvite;
+
+window.abrirLocalizacao =
+    abrirLocalizacao;
