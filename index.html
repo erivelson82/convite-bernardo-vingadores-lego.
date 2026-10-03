@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Bernardo 4 Anos | Vingadores LEGO</title>
 
     <meta
         name="description"
-        content="Você foi convocado para uma missão especial! Venha comemorar os 4 anos do Bernardo."
+        content="Convite especial para os 4 anos do Bernardo."
     >
 
     <link rel="stylesheet" href="style.css">
@@ -16,336 +21,421 @@
 
 <body>
 
-    <!-- ============================= -->
-    <!-- TELA DE ABERTURA -->
-    <!-- ============================= -->
 
-    <section class="abertura" id="abertura">
+<!-- =====================================================
+     TELA 1 — ABERTURA
+===================================================== -->
 
-        <div class="abertura-conteudo">
+<section class="abertura" id="abertura">
 
-            <div class="abertura-icon">⚡</div>
+    <div class="abertura-conteudo">
 
-            <p class="abertura-alerta">
-                ATENÇÃO, HERÓI!
+        <div class="abertura-icon">
+            ⚡
+        </div>
+
+        <p class="abertura-alerta">
+            ATENÇÃO, HERÓI!
+        </p>
+
+        <h1 class="abertura-titulo">
+            VOCÊ FOI<br>
+            CONVOCADO!
+        </h1>
+
+        <p class="abertura-texto">
+            Uma missão especial está prestes a começar.
+        </p>
+
+        <p class="abertura-subtexto">
+            Prepare-se para uma aventura inesquecível!
+        </p>
+
+        <button
+            class="btn-principal"
+            id="btnEntrar"
+            type="button"
+            onclick="entrarNaMissao()"
+        >
+            🚀 ENTRAR NA MISSÃO
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CONVITE — 4 ETAPAS
+===================================================== -->
+
+<main
+    class="convite"
+    id="convite"
+>
+
+
+    <!-- INDICADOR DAS ETAPAS -->
+
+    <div class="progresso">
+
+        <span
+            class="ponto ativo"
+            data-etapa="1"
+        ></span>
+
+        <span
+            class="linha"
+        ></span>
+
+        <span
+            class="ponto"
+            data-etapa="2"
+        ></span>
+
+        <span
+            class="linha"
+        ></span>
+
+        <span
+            class="ponto"
+            data-etapa="3"
+        ></span>
+
+        <span
+            class="linha"
+        ></span>
+
+        <span
+            class="ponto"
+            data-etapa="4"
+        ></span>
+
+    </div>
+
+
+    <!-- =================================================
+         ETAPA 1 — BERNARDO
+    ================================================= -->
+
+    <section
+        class="etapa ativa"
+        id="etapa1"
+    >
+
+        <div class="etapa-conteudo hero">
+
+            <div class="logo">
+                VINGADORES
+            </div>
+
+            <p class="mini-titulo">
+                UMA MISSÃO ESPECIAL
             </p>
 
-            <h1 class="abertura-titulo">
-                VOCÊ FOI<br>
-                CONVOCADO!
+            <div class="raio">
+                ⚡
+            </div>
+
+            <p class="apresentacao">
+                O herói da vez é...
+            </p>
+
+            <h1 class="nome">
+                BERNARDO
             </h1>
 
-            <p class="abertura-texto">
-                Uma missão especial está prestes a começar.
+            <div class="idade">
+                4
+            </div>
+
+            <h2>
+                ANOS
+            </h2>
+
+            <p class="texto-destaque">
+                Uma aventura incrível está
+                prestes a começar!
             </p>
 
-            <p class="abertura-subtexto">
-                Prepare-se para uma aventura inesquecível!
-            </p>
-
-            <!-- BOTÃO CORRIGIDO -->
             <button
-    class="btn-entrar"
-    id="btnEntrar"
-    type="button"
-    onclick="entrarNaMissao()"
->
-    🚀 ENTRAR NA MISSÃO
-</button>
+                class="btn-principal"
+                type="button"
+                onclick="proximaEtapa()"
+            >
+                PRÓXIMO →
+            </button>
 
         </div>
 
     </section>
 
 
-    <!-- ============================= -->
-    <!-- CONVITE PRINCIPAL -->
-    <!-- ============================= -->
+    <!-- =================================================
+         ETAPA 2 — MISSÃO
+    ================================================= -->
 
-    <main class="convite" id="convite">
+    <section
+        class="etapa"
+        id="etapa2"
+    >
 
+        <div class="etapa-conteudo">
 
-        <!-- ============================= -->
-        <!-- HERO -->
-        <!-- ============================= -->
+            <div class="icone-grande">
+                🦸
+            </div>
 
-        <section class="hero" id="inicio">
+            <p class="mini-titulo">
+                ARQUIVO DA S.H.I.E.L.D.
+            </p>
 
-            <div class="hero-conteudo">
+            <h2>
+                SUA MISSÃO
+            </h2>
 
-                <div class="logo">
-                    VINGADORES
+            <p class="texto">
+                O agente Bernardo está
+                completando <strong>4 anos</strong>
+                e precisa dos seus melhores aliados.
+            </p>
+
+            <div class="cards-missao">
+
+                <div class="card-missao">
+
+                    <span>🛡️</span>
+
+                    <strong>
+                        CORAGEM
+                    </strong>
+
+                    <small>
+                        Para encarar grandes aventuras.
+                    </small>
+
                 </div>
 
-                <p class="chamada">
-                    UMA MISSÃO ESPECIAL
-                </p>
 
-                <div class="raio-decorativo">
-                    ⚡
+                <div class="card-missao">
+
+                    <span>⚡</span>
+
+                    <strong>
+                        ENERGIA
+                    </strong>
+
+                    <small>
+                        Para brincar e se divertir.
+                    </small>
+
                 </div>
 
-                <h1>
-                    BERNARDO
-                </h1>
 
-                <div class="idade">
-                    4
+                <div class="card-missao">
+
+                    <span>🤝</span>
+
+                    <strong>
+                        AMIZADE
+                    </strong>
+
+                    <small>
+                        Para tornar o dia inesquecível.
+                    </small>
+
                 </div>
 
-                <h2>
-                    ANOS
-                </h2>
+            </div>
 
-                <p class="mensagem">
-                    Prepare-se para uma aventura cheia de
-                    diversão, heróis, brincadeiras e muita emoção!
-                </p>
+            <p class="alerta">
+                ⚠️ SUA PRESENÇA É MUITO IMPORTANTE!
+            </p>
+
+            <div class="navegacao">
 
                 <button
-                    class="btn-confirmar"
-                    id="btnConfirmar"
+                    class="btn-secundario"
                     type="button"
+                    onclick="etapaAnterior()"
                 >
-                    🦸 CONFIRMAR PRESENÇA
+                    ← VOLTAR
+                </button>
+
+                <button
+                    class="btn-principal"
+                    type="button"
+                    onclick="proximaEtapa()"
+                >
+                    PRÓXIMO →
                 </button>
 
             </div>
 
-        </section>
+        </div>
+
+    </section>
 
 
-        <!-- ============================= -->
-        <!-- MISSÃO -->
-        <!-- ============================= -->
+    <!-- =================================================
+         ETAPA 3 — DATA E LOCAL
+    ================================================= -->
 
-        <section class="missao">
+    <section
+        class="etapa"
+        id="etapa3"
+    >
 
-            <div class="missao-conteudo">
+        <div class="etapa-conteudo">
 
-                <p class="missao-arquivo">
-                    ARQUIVO DA S.H.I.E.L.D.
-                </p>
+            <div class="icone-grande">
+                📋
+            </div>
 
-                <h2>
-                    UMA MISSÃO ESPECIAL!
-                </h2>
+            <p class="mini-titulo">
+                DADOS DA MISSÃO
+            </p>
 
-                <p>
-                    O agente Bernardo está completando
-                    <strong>4 anos</strong> e precisa da ajuda
-                    de seus melhores aliados.
-                </p>
+            <h2>
+                QUANDO E ONDE?
+            </h2>
 
-                <p>
-                    Sua missão será comparecer à grande
-                    comemoração e ajudar a tornar esse dia
-                    inesquecível!
-                </p>
 
-                <div class="missao-alerta">
-                    ⚠️ SUA PRESENÇA É MUITO IMPORTANTE!
+            <div class="informacao">
+
+                <div class="informacao-icone">
+                    📅
+                </div>
+
+                <div>
+                    <span>
+                        DATA
+                    </span>
+
+                    <strong>
+                        12 de dezembro de 2026
+                    </strong>
                 </div>
 
             </div>
 
-        </section>
 
+            <div class="informacao">
 
-        <!-- ============================= -->
-        <!-- HERÓIS -->
-        <!-- ============================= -->
+                <div class="informacao-icone">
+                    ⏰
+                </div>
 
-        <section class="herois">
+                <div>
+                    <span>
+                        HORÁRIO
+                    </span>
 
-            <div class="herois-conteudo">
-
-                <p class="secao-subtitulo">
-                    JUNTE-SE À EQUIPE
-                </p>
-
-                <h2>
-                    HERÓIS DA MISSÃO
-                </h2>
-
-                <div class="herois-grid">
-
-
-                    <div class="heroi-card">
-
-                        <div class="heroi-icon">
-                            🛡️
-                        </div>
-
-                        <h3>
-                            CORAGEM
-                        </h3>
-
-                        <p>
-                            Entre na missão com muita
-                            coragem e energia!
-                        </p>
-
-                    </div>
-
-
-                    <div class="heroi-card">
-
-                        <div class="heroi-icon">
-                            ⚡
-                        </div>
-
-                        <h3>
-                            ENERGIA
-                        </h3>
-
-                        <p>
-                            Prepare-se para brincar,
-                            correr e se divertir!
-                        </p>
-
-                    </div>
-
-
-                    <div class="heroi-card">
-
-                        <div class="heroi-icon">
-                            🦸
-                        </div>
-
-                        <h3>
-                            AMIZADE
-                        </h3>
-
-                        <p>
-                            Porque uma grande aventura
-                            fica melhor com os amigos!
-                        </p>
-
-                    </div>
-
+                    <strong>
+                        12:00
+                    </strong>
                 </div>
 
             </div>
 
-        </section>
 
+            <div class="informacao">
 
-        <!-- ============================= -->
-        <!-- INFORMAÇÕES DA FESTA -->
-        <!-- ============================= -->
-
-        <section class="informacoes">
-
-            <div class="informacoes-conteudo">
-
-                <p class="secao-subtitulo">
-                    DADOS DA MISSÃO
-                </p>
-
-                <h2>
-                    QUANDO E ONDE?
-                </h2>
-
-
-                <div class="info-card">
-
-                    <div class="info-icon">
-                        📅
-                    </div>
-
-                    <div class="info-texto">
-
-                        <span>
-                            DATA
-                        </span>
-
-                        <strong>
-                            12 de dezembro de 2026
-                        </strong>
-
-                    </div>
-
+                <div class="informacao-icone">
+                    📍
                 </div>
 
+                <div>
+                    <span>
+                        LOCAL
+                    </span>
 
-                <div class="info-card">
-
-                    <div class="info-icon">
-                        ⏰
-                    </div>
-
-                    <div class="info-texto">
-
-                        <span>
-                            HORÁRIO
-                        </span>
-
-                        <strong>
-                            12:00
-                        </strong>
-
-                    </div>
-
+                    <strong>
+                        Minha casa
+                    </strong>
                 </div>
 
+            </div>
 
-                <div class="info-card">
 
-                    <div class="info-icon">
-                        📍
-                    </div>
+            <button
+                class="btn-localizacao"
+                id="btnLocalizacao"
+                type="button"
+            >
+                📍 VER LOCALIZAÇÃO
+            </button>
 
-                    <div class="info-texto">
 
-                        <span>
-                            LOCAL
-                        </span>
-
-                        <strong>
-                            Minha casa
-                        </strong>
-
-                    </div>
-
-                </div>
-
+            <div class="navegacao">
 
                 <button
-                    class="btn-localizacao"
-                    id="btnLocalizacao"
+                    class="btn-secundario"
                     type="button"
+                    onclick="etapaAnterior()"
                 >
-                    📍 VER LOCALIZAÇÃO
+                    ← VOLTAR
+                </button>
+
+                <button
+                    class="btn-principal"
+                    type="button"
+                    onclick="proximaEtapa()"
+                >
+                    PRÓXIMO →
                 </button>
 
             </div>
 
-        </section>
+        </div>
+
+    </section>
 
 
-        <!-- ============================= -->
-        <!-- CONTAGEM REGRESSIVA -->
-        <!-- ============================= -->
+    <!-- =================================================
+         ETAPA 4 — CONFIRMAÇÃO
+    ================================================= -->
 
-        <section class="contador">
+    <section
+        class="etapa"
+        id="etapa4"
+    >
 
-            <div class="contador-conteudo">
+        <div
+            class="etapa-conteudo confirmacao"
+            id="confirmacao"
+        >
 
-                <p class="secao-subtitulo">
-                    CONTAGEM REGRESSIVA
+            <div class="icone-grande">
+                🎉
+            </div>
+
+            <p class="mini-titulo">
+                ÚLTIMA ETAPA
+            </p>
+
+            <h2>
+                VOCÊ ACEITA A MISSÃO?
+            </h2>
+
+            <p class="texto">
+                Bernardo está esperando
+                seus melhores aliados!
+            </p>
+
+
+            <!-- CONTADOR -->
+
+            <div class="contador">
+
+                <p>
+                    A MISSÃO COMEÇA EM
                 </p>
 
-                <h2>
-                    A MISSÃO COMEÇA EM...
-                </h2>
-
-                <div
-                    id="countdown"
-                    class="countdown"
-                >
+                <div class="countdown">
 
                     <div class="tempo">
+
                         <strong id="dias">
                             00
                         </strong>
@@ -353,10 +443,12 @@
                         <span>
                             DIAS
                         </span>
+
                     </div>
 
 
                     <div class="tempo">
+
                         <strong id="horas">
                             00
                         </strong>
@@ -364,10 +456,12 @@
                         <span>
                             HORAS
                         </span>
+
                     </div>
 
 
                     <div class="tempo">
+
                         <strong id="minutos">
                             00
                         </strong>
@@ -375,10 +469,12 @@
                         <span>
                             MIN
                         </span>
+
                     </div>
 
 
                     <div class="tempo">
+
                         <strong id="segundos">
                             00
                         </strong>
@@ -386,91 +482,65 @@
                         <span>
                             SEG
                         </span>
+
                     </div>
 
                 </div>
 
             </div>
 
-        </section>
+
+            <button
+                class="btn-principal btn-confirmar"
+                id="btnConfirmarFinal"
+                type="button"
+            >
+                ✅ CONFIRMAR PRESENÇA
+            </button>
 
 
-        <!-- ============================= -->
-        <!-- CONFIRMAÇÃO -->
-        <!-- ============================= -->
-
-        <section
-            class="confirmacao"
-            id="confirmacao"
-        >
-
-            <div class="confirmacao-conteudo">
-
-                <div class="confirmacao-icon">
-                    🦸
-                </div>
-
-                <p class="secao-subtitulo">
-                    ÚLTIMA ETAPA
-                </p>
-
-                <h2>
-                    VOCÊ ACEITA A MISSÃO?
-                </h2>
-
-                <p>
-                    Confirme sua presença e faça parte
-                    dessa aventura especial!
-                </p>
+            <button
+                class="btn-compartilhar"
+                id="btnCompartilhar"
+                type="button"
+            >
+                📲 COMPARTILHAR CONVITE
+            </button>
 
 
-                <button
-                    class="btn-confirmar-final"
-                    id="btnConfirmarFinal"
-                    type="button"
-                >
-                    ✅ CONFIRMAR PRESENÇA
-                </button>
+            <button
+                class="btn-secundario voltar-final"
+                type="button"
+                onclick="etapaAnterior()"
+            >
+                ← VOLTAR
+            </button>
+
+        </div>
+
+    </section>
 
 
-                <button
-                    class="btn-compartilhar"
-                    id="btnCompartilhar"
-                    type="button"
-                >
-                    📲 COMPARTILHAR CONVITE
-                </button>
+    <!-- =================================================
+         RODAPÉ
+    ================================================= -->
 
-            </div>
+    <footer>
 
-        </section>
+        <strong>
+            ⚡ BERNARDO FURTADO ⚡
+        </strong>
 
+        <span>
+            4 ANOS • UMA AVENTURA INESQUECÍVEL
+        </span>
 
-        <!-- ============================= -->
-        <!-- RODAPÉ -->
-        <!-- ============================= -->
+    </footer>
 
-        <footer>
-
-            <p>
-                ⚡ BERNARDO FURTADO ⚡
-            </p>
-
-            <span>
-                4 ANOS • UMA AVENTURA INESQUECÍVEL
-            </span>
-
-        </footer>
+</main>
 
 
-    </main>
-
-
-    <!-- ============================= -->
-    <!-- JAVASCRIPT -->
-    <!-- ============================= -->
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
