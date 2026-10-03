@@ -1,7 +1,6 @@
-```css
-/* =========================================================
+/* =====================================================
    RESET
-========================================================= */
+===================================================== */
 
 * {
     margin: 0;
@@ -14,47 +13,23 @@ html {
 }
 
 body {
+    min-height: 100vh;
     font-family: Arial, Helvetica, sans-serif;
-    background: #101010;
+    background: #090b12;
     color: #ffffff;
     overflow-x: hidden;
 }
 
-button,
-a {
-    -webkit-tap-highlight-color: transparent;
-}
-
 button {
     font-family: inherit;
+    cursor: pointer;
+    border: none;
 }
 
 
-/* =========================================================
-   CONVITE
-========================================================= */
-
-.convite {
-    width: 100%;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(20px);
-    transition:
-        opacity 0.8s ease,
-        transform 0.8s ease,
-        visibility 0.8s ease;
-}
-
-.convite.mostrar {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-
-/* =========================================================
+/* =====================================================
    TELA DE ABERTURA
-========================================================= */
+===================================================== */
 
 .abertura {
     position: fixed;
@@ -62,42 +37,25 @@ button {
     z-index: 9999;
 
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
-    padding: 24px;
+    padding: 25px;
 
     text-align: center;
 
     background:
         radial-gradient(
             circle at center,
-            #343434 0%,
-            #151515 45%,
-            #050505 100%
+            #28354d 0%,
+            #101522 45%,
+            #05070c 100%
         );
 
     transition:
-        opacity 0.7s ease,
-        transform 0.7s ease,
-        visibility 0.7s ease;
-}
-
-.abertura::before {
-    content: "";
-
-    position: absolute;
-    inset: 0;
-
-    background:
-        linear-gradient(
-            135deg,
-            transparent 48%,
-            rgba(255, 215, 0, 0.08) 49%,
-            transparent 51%
-        );
-
-    pointer-events: none;
+        opacity .7s ease,
+        visibility .7s ease,
+        transform .7s ease;
 }
 
 .abertura.fechar {
@@ -107,487 +65,709 @@ button {
 }
 
 .abertura-conteudo {
-    position: relative;
-    z-index: 2;
-
     width: 100%;
     max-width: 430px;
 
-    animation: entradaAbertura 0.9s ease forwards;
+    animation:
+        entrada .8s ease;
 }
 
 .abertura-icon {
-    font-size: 64px;
+    font-size: 65px;
     margin-bottom: 15px;
 
     animation:
-        raio 1.8s infinite ease-in-out;
+        pulsar 1.5s infinite;
 }
 
 .abertura-alerta {
     font-size: 13px;
-    font-weight: 900;
-    letter-spacing: 4px;
-
-    margin-bottom: 15px;
-
-    color: #ffd400;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
 }
 
 .abertura-titulo {
-    font-size: clamp(38px, 11vw, 62px);
-    line-height: 0.95;
-
+    font-size: clamp(40px, 12vw, 65px);
+    line-height: .95;
     font-weight: 1000;
     letter-spacing: -2px;
-
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .abertura-texto {
     font-size: 18px;
     line-height: 1.5;
-
-    color: #eeeeee;
-
     margin-bottom: 8px;
 }
 
 .abertura-subtexto {
     font-size: 14px;
-    color: #bbbbbb;
-
-    margin-bottom: 30px;
+    opacity: .75;
+    margin-bottom: 35px;
 }
 
-.btn-entrar {
+
+/* =====================================================
+   CONVITE
+===================================================== */
+
+.convite {
     width: 100%;
-    min-height: 54px;
+    min-height: 100vh;
 
-    padding: 14px 20px;
-
-    border: 0;
-    border-radius: 12px;
-
-    background: #ffd400;
-    color: #111111;
-
-    font-size: 15px;
-    font-weight: 1000;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    visibility: hidden;
 
     transition:
-        transform 0.2s ease,
-        filter 0.2s ease;
+        opacity .8s ease,
+        visibility .8s ease;
 }
 
-.btn-entrar:active {
-    transform: scale(0.96);
+.convite.mostrar {
+    opacity: 1;
+    visibility: visible;
 }
 
 
-/* =========================================================
-   HERO
-========================================================= */
+/* =====================================================
+   PROGRESSO
+===================================================== */
 
-.hero {
-    position: relative;
+.progresso {
+    position: fixed;
 
-    min-height: 100vh;
+    top: 18px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 1000;
 
     display: flex;
     align-items: center;
-    justify-content: center;
 
-    padding: 60px 20px;
-
-    text-align: center;
-
-    overflow: hidden;
-
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(0, 0, 0, 0.28),
-            rgba(0, 0, 0, 0.78)
-        ),
-        url("assets/images/background.jpg");
-
-    background-size: cover;
-    background-position: center;
+    width: 170px;
 }
 
-.hero::before {
-    content: "";
+.ponto {
+    width: 11px;
+    height: 11px;
 
-    position: absolute;
-    inset: 0;
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.25);
+
+    transition: .3s;
+}
+
+.ponto.ativo {
+    background: #ffffff;
+    transform: scale(1.25);
+}
+
+.linha {
+    flex: 1;
+    height: 2px;
+
+    background: rgba(255,255,255,.2);
+}
+
+
+/* =====================================================
+   ETAPAS
+===================================================== */
+
+.etapa {
+    display: none;
+
+    min-height: 100vh;
+
+    padding:
+        75px 22px
+        40px;
 
     background:
         radial-gradient(
-            circle at center,
-            transparent 20%,
-            rgba(0, 0, 0, 0.5) 100%
+            circle at 50% 15%,
+            #28354d 0%,
+            #111622 42%,
+            #080a10 100%
         );
-
-    pointer-events: none;
 }
 
-.hero-conteudo {
-    position: relative;
-    z-index: 2;
+.etapa.ativa {
+    display: flex;
 
+    align-items: center;
+    justify-content: center;
+
+    animation:
+        entrarEtapa .45s ease;
+}
+
+.etapa-conteudo {
     width: 100%;
-    max-width: 600px;
+    max-width: 480px;
 
-    animation: aparecer 1s ease forwards;
+    text-align: center;
 }
 
 
-/* =========================================================
-   LOGO
-========================================================= */
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+    padding-top: 30px;
+}
 
 .logo {
     display: inline-block;
 
-    padding: 8px 18px;
-
-    margin-bottom: 16px;
-
-    border: 3px solid #ffd400;
-    border-radius: 8px;
-
-    background: #111111;
-
-    color: #ffd400;
-
-    font-size: clamp(18px, 5vw, 28px);
+    font-size: 23px;
     font-weight: 1000;
-    letter-spacing: 3px;
-
-    transform: skew(-5deg);
-
-    box-shadow:
-        5px 5px 0 #d71920;
-}
-
-.chamada {
-    font-size: 12px;
-    font-weight: 900;
     letter-spacing: 2px;
 
-    color: #ffffff;
+    margin-bottom: 22px;
 
-    margin-bottom: 12px;
+    padding: 8px 15px;
+
+    border: 3px solid #ffffff;
+
+    transform: skew(-8deg);
 }
 
-.raio-decorativo {
-    font-size: 30px;
+.mini-titulo {
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+    opacity: .7;
+
+    margin-bottom: 15px;
+}
+
+.raio {
+    font-size: 38px;
+    margin-bottom: 5px;
+
+    animation:
+        pulsar 1.5s infinite;
+}
+
+.apresentacao {
+    font-size: 15px;
+    opacity: .7;
     margin-bottom: 4px;
-
-    animation: pulso 1.5s infinite ease-in-out;
 }
 
-
-/* =========================================================
-   NOME
-========================================================= */
-
-.hero h1 {
-    font-size: clamp(50px, 14vw, 100px);
-    line-height: 0.9;
+.nome {
+    font-size: clamp(48px, 15vw, 75px);
+    line-height: 1;
 
     font-weight: 1000;
-    letter-spacing: -4px;
 
-    text-shadow:
-        4px 4px 0 #d71920,
-        7px 7px 0 #000000;
+    letter-spacing: -3px;
 
-    animation: nomeEntrando 1s ease forwards;
+    margin-bottom: 8px;
 }
 
 .idade {
-    width: 115px;
-    height: 115px;
+    width: 90px;
+    height: 90px;
+
+    margin: 10px auto;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    margin: 22px auto 10px;
-
     border-radius: 50%;
 
-    background: #ffd400;
-    color: #111111;
-
-    border: 7px solid #111111;
-
-    font-size: 78px;
-    line-height: 1;
+    font-size: 55px;
     font-weight: 1000;
 
-    box-shadow:
-        7px 7px 0 #d71920;
+    background: #ffffff;
+    color: #111;
 
-    animation: pulso 2s infinite ease-in-out;
+    box-shadow:
+        0 0 0 8px rgba(255,255,255,.12),
+        0 15px 35px rgba(0,0,0,.35);
 }
 
 .hero h2 {
-    font-size: 26px;
-    font-weight: 1000;
-    letter-spacing: 7px;
+    font-size: 18px;
+    letter-spacing: 8px;
 
     margin-bottom: 20px;
 }
 
-.mensagem {
-    max-width: 500px;
-
-    margin: 0 auto 28px;
-
-    font-size: 17px;
-    line-height: 1.55;
-
-    color: #eeeeee;
-}
-
-
-/* =========================================================
-   BOTÃO CONFIRMAR
-========================================================= */
-
-.btn-confirmar,
-.btn-confirmar-final {
-    width: 100%;
-    max-width: 380px;
-
-    min-height: 54px;
-
-    padding: 14px 20px;
-
-    border: 0;
-    border-radius: 12px;
-
-    background: #d71920;
-    color: #ffffff;
-
-    font-size: 14px;
-    font-weight: 1000;
-    letter-spacing: 0.5px;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 7px 0 #8f1116;
-
-    transition:
-        transform 0.15s ease,
-        box-shadow 0.15s ease;
-}
-
-.btn-confirmar:active,
-.btn-confirmar-final:active {
-    transform: translateY(5px);
-
-    box-shadow:
-        0 2px 0 #8f1116;
-}
-
-
-/* =========================================================
-   MISSÃO
-========================================================= */
-
-.missao {
-    padding: 80px 20px;
-
-    background:
-        linear-gradient(
-            180deg,
-            #161616,
-            #252525
-        );
-
-    text-align: center;
-}
-
-.missao-conteudo {
-    max-width: 650px;
-    margin: 0 auto;
-}
-
-.missao-icon {
-    display: block;
-
-    font-size: 58px;
-
-    margin-bottom: 15px;
-
-    animation: flutuar 3s infinite ease-in-out;
-}
-
-.secao-tag {
-    margin-bottom: 10px;
-
-    font-size: 11px;
-    font-weight: 900;
-
-    letter-spacing: 3px;
-
-    color: #ffd400;
-}
-
-.missao h2,
-.herois h2,
-.informacoes h2,
-.contador h2,
-.confirmacao h2 {
-    font-size: clamp(28px, 8vw, 44px);
-    line-height: 1;
-
-    font-weight: 1000;
-
-    margin-bottom: 22px;
-}
-
-.missao p {
+.texto-destaque {
     font-size: 17px;
     line-height: 1.6;
 
-    color: #dddddd;
-
-    margin-bottom: 12px;
+    max-width: 360px;
+    margin: 0 auto 30px;
 }
 
-.missao-alerta {
-    display: inline-block;
 
-    margin-top: 20px;
+/* =====================================================
+   TÍTULOS
+===================================================== */
 
-    padding: 10px 14px;
+.etapa h2 {
+    font-size: clamp(30px, 9vw, 45px);
 
-    border-radius: 8px;
+    line-height: 1;
 
-    background: #111111;
+    margin-bottom: 20px;
 
-    color: #ffd400;
+    font-weight: 1000;
+}
 
-    font-size: 11px;
+.texto {
+    font-size: 16px;
+    line-height: 1.7;
+
+    color: rgba(255,255,255,.78);
+
+    margin-bottom: 25px;
+}
+
+.icone-grande {
+    font-size: 58px;
+    margin-bottom: 15px;
+
+    animation:
+        flutuar 3s ease-in-out infinite;
+}
+
+
+/* =====================================================
+   CARDS DA MISSÃO
+===================================================== */
+
+.cards-missao {
+    display: grid;
+    gap: 12px;
+
+    margin: 25px 0;
+}
+
+.card-missao {
+    display: grid;
+
+    grid-template-columns: 48px 1fr;
+
+    grid-template-rows: auto auto;
+
+    column-gap: 12px;
+
+    text-align: left;
+
+    padding: 15px;
+
+    border-radius: 16px;
+
+    background: rgba(255,255,255,.07);
+
+    border: 1px solid rgba(255,255,255,.12);
+}
+
+.card-missao span {
+    grid-row: 1 / 3;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+}
+
+.card-missao strong {
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+
+.card-missao small {
+    font-size: 12px;
+    line-height: 1.4;
+
+    opacity: .65;
+}
+
+.alerta {
+    font-size: 12px;
+    font-weight: 800;
+
+    line-height: 1.5;
+
+    margin: 20px 0;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    background: rgba(255,255,255,.06);
+}
+
+
+/* =====================================================
+   INFORMAÇÕES
+===================================================== */
+
+.informacao {
+    display: flex;
+    align-items: center;
+
+    text-align: left;
+
+    gap: 15px;
+
+    padding: 18px;
+
+    margin-bottom: 12px;
+
+    border-radius: 16px;
+
+    background: rgba(255,255,255,.07);
+
+    border: 1px solid rgba(255,255,255,.1);
+}
+
+.informacao-icone {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    font-size: 24px;
+
+    background: rgba(255,255,255,.08);
+}
+
+.informacao span {
+    display: block;
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    opacity: .5;
+
+    margin-bottom: 5px;
+}
+
+.informacao strong {
+    display: block;
+
+    font-size: 16px;
+}
+
+
+/* =====================================================
+   BOTÕES
+===================================================== */
+
+.btn-principal {
+    width: 100%;
+    max-width: 360px;
+
+    min-height: 56px;
+
+    padding: 15px 20px;
+
+    border-radius: 14px;
+
+    font-size: 15px;
     font-weight: 900;
+
+    letter-spacing: .5px;
+
+    color: #111;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.3);
+
+    transition:
+        transform .2s,
+        box-shadow .2s;
+}
+
+.btn-principal:active {
+    transform: scale(.96);
+}
+
+.btn-secundario {
+    min-height: 50px;
+
+    padding: 12px 18px;
+
+    border-radius: 12px;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    color: #ffffff;
+
+    background: rgba(255,255,255,.08);
+
+    border: 1px solid rgba(255,255,255,.15);
+}
+
+.btn-localizacao {
+    width: 100%;
+
+    min-height: 52px;
+
+    margin: 8px 0 25px;
+
+    border-radius: 13px;
+
+    font-weight: 800;
+
+    color: #ffffff;
+
+    background: rgba(255,255,255,.1);
+
+    border: 1px solid rgba(255,255,255,.2);
+}
+
+.btn-compartilhar {
+    width: 100%;
+    max-width: 360px;
+
+    min-height: 52px;
+
+    margin-top: 12px;
+
+    border-radius: 13px;
+
+    font-size: 13px;
+    font-weight: 800;
+
+    color: #ffffff;
+
+    background: rgba(255,255,255,.08);
+
+    border: 1px solid rgba(255,255,255,.15);
+}
+
+.navegacao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    width: 100%;
+}
+
+.navegacao .btn-principal {
+    flex: 1;
+}
+
+.navegacao .btn-secundario {
+    flex: 0 0 auto;
+}
+
+.voltar-final {
+    margin-top: 20px;
+}
+
+
+/* =====================================================
+   CONTADOR
+===================================================== */
+
+.contador {
+    width: 100%;
+
+    margin: 25px 0;
+    padding: 18px 10px;
+
+    border-radius: 18px;
+
+    background: rgba(255,255,255,.06);
+
+    border: 1px solid rgba(255,255,255,.1);
+}
+
+.contador > p {
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    opacity: .6;
+
+    margin-bottom: 15px;
+}
+
+.countdown {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 7px;
+}
+
+.tempo {
+    padding: 10px 3px;
+
+    border-radius: 10px;
+
+    background: rgba(255,255,255,.07);
+}
+
+.tempo strong {
+    display: block;
+
+    font-size: 25px;
+    line-height: 1;
+
+    margin-bottom: 5px;
+}
+
+.tempo span {
+    font-size: 8px;
+    font-weight: 800;
+
+    opacity: .55;
+}
+
+
+/* =====================================================
+   RODAPÉ
+===================================================== */
+
+footer {
+    text-align: center;
+
+    padding: 25px 20px 35px;
+
+    background: #06070b;
+}
+
+footer strong {
+    display: block;
+
+    font-size: 12px;
+
+    margin-bottom: 7px;
+}
+
+footer span {
+    font-size: 9px;
+
+    opacity: .45;
+
     letter-spacing: 1px;
 }
 
 
-/* =========================================================
-   HERÓIS
-========================================================= */
+/* =====================================================
+   ANIMAÇÕES
+===================================================== */
 
-.herois {
-    padding: 80px 20px;
+@keyframes entrada {
 
-    background: #f2f2f2;
-    color: #111111;
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
 
-    text-align: center;
-}
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 
-.secao-cabecalho {
-    max-width: 650px;
-    margin: 0 auto 35px;
-}
-
-.secao-cabecalho p:not(.secao-tag) {
-    color: #555555;
-    line-height: 1.5;
-}
-
-.herois-grid {
-    width: 100%;
-    max-width: 950px;
-
-    margin: 0 auto;
-
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 18px;
-}
-
-.heroi-card {
-    padding: 28px 20px;
-
-    border-radius: 14px;
-
-    background: #ffffff;
-
-    border: 2px solid #dddddd;
-
-    box-shadow:
-        0 8px 0 #d71920;
-
-    transition:
-        transform 0.2s ease;
-}
-
-.heroi-card:active {
-    transform: translateY(4px);
-}
-
-.heroi-icon {
-    font-size: 48px;
-    margin-bottom: 12px;
-}
-
-.heroi-card h3 {
-    font-size: 18px;
-    font-weight: 1000;
-
-    margin-bottom: 8px;
-}
-
-.heroi-card p {
-    font-size: 14px;
-    line-height: 1.5;
-
-    color: #555555;
 }
 
 
-/* =========================================================
-   INFORMAÇÕES
-========================================================= */
+@keyframes entrarEtapa {
 
-.informacoes {
-    padding: 80px 20px;
+    from {
+        opacity: 0;
+        transform: translateX(25px);
+    }
 
-    background: #111111;
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 
-    text-align: center;
 }
 
-.informacoes-grid {
-    width: 100%;
-    max-width: 650px;
 
-    margin: 0 auto 30px;
+@keyframes pulsar {
 
-    display: grid;
-    gap: 14px;
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
 }
 
-.info {
-    display: flex;
-    align-items: center;
 
-    gap: 16px;
+@keyframes flutuar {
 
-    padding: 18px;
+    0%,
+    100% {
+        transform: translateY(0);
+    }
 
-    text-align: l
-```
+    50% {
+        transform: translateY(-8px);
+    }
+
+}
+
+
+/* =====================================================
+   DESKTOP
+===================================================== */
+
+@media (min-width: 700px) {
+
+    .etapa {
+        padding-top: 90px;
+    }
+
+    .cards-missao {
+        grid-template-columns:
+            repeat(3, 1fr);
+    }
+
+    .card-missao {
+        display: block;
+        text-align: center;
+    }
+
+    .card-missao span {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .card-missao small {
+        display: block;
+        margin-top: 5px;
+    }
+
+}
