@@ -1,45 +1,30 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>Bernardo 4 Anos | Vingadores LEGO</title>
 
     <meta
         name="description"
-        content="Convite especial para os 4 anos do Bernardo — uma missão dos Vingadores LEGO!"
+        content="Você foi convocado para uma missão especial! Venha comemorar os 4 anos do Bernardo."
     >
-
-    <meta
-        name="theme-color"
-        content="#101010"
-    >
-
-    <title>Bernardo 4 Anos | Vingadores LEGO</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- =====================================================
-         TELA DE ABERTURA
-    ====================================================== -->
+    <!-- ============================= -->
+    <!-- TELA DE ABERTURA -->
+    <!-- ============================= -->
 
-    <section
-        class="abertura"
-        id="abertura"
-    >
+    <section class="abertura" id="abertura">
 
         <div class="abertura-conteudo">
 
-            <div class="abertura-icon">
-                ⚡
-            </div>
+            <div class="abertura-icon">⚡</div>
 
             <p class="abertura-alerta">
                 ATENÇÃO, HERÓI!
@@ -58,10 +43,12 @@
                 Prepare-se para uma aventura inesquecível!
             </p>
 
+            <!-- BOTÃO CORRIGIDO -->
             <button
                 class="btn-entrar"
                 id="btnEntrar"
                 type="button"
+                onclick="entrarNaMissao()"
             >
                 🚀 ENTRAR NA MISSÃO
             </button>
@@ -71,24 +58,18 @@
     </section>
 
 
-    <!-- =====================================================
-         CONVITE
-    ====================================================== -->
+    <!-- ============================= -->
+    <!-- CONVITE PRINCIPAL -->
+    <!-- ============================= -->
 
-    <main
-        class="convite"
-        id="convite"
-    >
+    <main class="convite" id="convite">
 
 
-        <!-- =================================================
-             HERO PRINCIPAL
-        ================================================== -->
+        <!-- ============================= -->
+        <!-- HERO -->
+        <!-- ============================= -->
 
-        <section
-            class="hero"
-            id="inicio"
-        >
+        <section class="hero" id="inicio">
 
             <div class="hero-conteudo">
 
@@ -97,7 +78,7 @@
                 </div>
 
                 <p class="chamada">
-                    UMA NOVA AVENTURA VAI COMEÇAR!
+                    UMA MISSÃO ESPECIAL
                 </p>
 
                 <div class="raio-decorativo">
@@ -117,9 +98,8 @@
                 </h2>
 
                 <p class="mensagem">
-                    Os Vingadores estão reunindo seus
-                    melhores heróis para uma missão
-                    muito especial!
+                    Prepare-se para uma aventura cheia de
+                    diversão, heróis, brincadeiras e muita emoção!
                 </p>
 
                 <button
@@ -127,7 +107,7 @@
                     id="btnConfirmar"
                     type="button"
                 >
-                    ⚡ CONFIRMAR PRESENÇA
+                    🦸 CONFIRMAR PRESENÇA
                 </button>
 
             </div>
@@ -135,22 +115,15 @@
         </section>
 
 
-        <!-- =================================================
-             MISSÃO
-        ================================================== -->
+        <!-- ============================= -->
+        <!-- MISSÃO -->
+        <!-- ============================= -->
 
-        <section
-            class="missao"
-            id="missao"
-        >
+        <section class="missao">
 
             <div class="missao-conteudo">
 
-                <span class="missao-icon">
-                    🦸
-                </span>
-
-                <p class="secao-tag">
+                <p class="missao-arquivo">
                     ARQUIVO DA S.H.I.E.L.D.
                 </p>
 
@@ -159,17 +132,19 @@
                 </h2>
 
                 <p>
-                    Os Vingadores precisam reunir
-                    seus melhores heróis para
-                    comemorar uma data muito especial.
+                    O agente Bernardo está completando
+                    <strong>4 anos</strong> e precisa da ajuda
+                    de seus melhores aliados.
                 </p>
 
                 <p>
-                    E você foi convocado para essa missão!
+                    Sua missão será comparecer à grande
+                    comemoração e ajudar a tornar esse dia
+                    inesquecível!
                 </p>
 
                 <div class="missao-alerta">
-                    ⚠️ MISSÃO ULTRASSECRETA ⚠️
+                    ⚠️ SUA PRESENÇA É MUITO IMPORTANTE!
                 </div>
 
             </div>
@@ -177,82 +152,77 @@
         </section>
 
 
-        <!-- =================================================
-             HERÓIS DA MISSÃO
-        ================================================== -->
+        <!-- ============================= -->
+        <!-- HERÓIS -->
+        <!-- ============================= -->
 
-        <section
-            class="herois"
-            id="herois"
-        >
+        <section class="herois">
 
-            <div class="secao-cabecalho">
+            <div class="herois-conteudo">
 
-                <p class="secao-tag">
-                    EQUIPE SELECIONADA
+                <p class="secao-subtitulo">
+                    JUNTE-SE À EQUIPE
                 </p>
 
                 <h2>
-                    🦸 HERÓIS DA MISSÃO
+                    HERÓIS DA MISSÃO
                 </h2>
 
-                <p>
-                    Cada herói terá um papel importante
-                    nessa aventura!
-                </p>
-
-            </div>
+                <div class="herois-grid">
 
 
-            <div class="herois-grid">
+                    <div class="heroi-card">
 
-                <div class="heroi-card">
+                        <div class="heroi-icon">
+                            🛡️
+                        </div>
 
-                    <div class="heroi-icon">
-                        🛡️
+                        <h3>
+                            CORAGEM
+                        </h3>
+
+                        <p>
+                            Entre na missão com muita
+                            coragem e energia!
+                        </p>
+
                     </div>
 
-                    <h3>
-                        CORAGEM
-                    </h3>
 
-                    <p>
-                        Pronto para enfrentar qualquer desafio.
-                    </p>
+                    <div class="heroi-card">
 
-                </div>
+                        <div class="heroi-icon">
+                            ⚡
+                        </div>
 
+                        <h3>
+                            ENERGIA
+                        </h3>
 
-                <div class="heroi-card">
+                        <p>
+                            Prepare-se para brincar,
+                            correr e se divertir!
+                        </p>
 
-                    <div class="heroi-icon">
-                        ⚡
                     </div>
 
-                    <h3>
-                        ENERGIA
-                    </h3>
 
-                    <p>
-                        Toda missão precisa de muita diversão.
-                    </p>
+                    <div class="heroi-card">
 
-                </div>
+                        <div class="heroi-icon">
+                            🦸
+                        </div>
 
+                        <h3>
+                            AMIZADE
+                        </h3>
 
-                <div class="heroi-card">
+                        <p>
+                            Porque uma grande aventura
+                            fica melhor com os amigos!
+                        </p>
 
-                    <div class="heroi-icon">
-                        🦸
                     </div>
-
-                    <h3>
-                        AMIZADE
-                    </h3>
-
-                    <p>
-                        Juntos, os heróis são ainda mais fortes.
-                    </p>
 
                 </div>
 
@@ -261,140 +231,173 @@
         </section>
 
 
-        <!-- =================================================
-             INFORMAÇÕES DA FESTA
-        ================================================== -->
+        <!-- ============================= -->
+        <!-- INFORMAÇÕES DA FESTA -->
+        <!-- ============================= -->
 
-        <section
-            class="informacoes"
-            id="informacoes"
-        >
+        <section class="informacoes">
 
-            <div class="secao-cabecalho">
+            <div class="informacoes-conteudo">
 
-                <p class="secao-tag">
+                <p class="secao-subtitulo">
                     DADOS DA MISSÃO
                 </p>
 
                 <h2>
-                    📋 INFORMAÇÕES
+                    QUANDO E ONDE?
                 </h2>
 
-            </div>
 
+                <div class="info-card">
 
-            <div class="informacoes-grid">
-
-
-                <div class="info">
-
-                    <span>
+                    <div class="info-icon">
                         📅
-                    </span>
+                    </div>
 
-                    <div>
+                    <div class="info-texto">
 
-                        <strong>
+                        <span>
                             DATA
-                        </strong>
+                        </span>
 
-                        <p>
+                        <strong>
                             12 de dezembro de 2026
-                        </p>
+                        </strong>
 
                     </div>
 
                 </div>
 
 
-                <div class="info">
+                <div class="info-card">
 
-                    <span>
-                        🕐
-                    </span>
+                    <div class="info-icon">
+                        ⏰
+                    </div>
 
-                    <div>
+                    <div class="info-texto">
 
-                        <strong>
+                        <span>
                             HORÁRIO
-                        </strong>
-
-                        <p>
-                            12:00
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="info">
-
-                    <span>
-                        📍
-                    </span>
-
-                    <div>
+                        </span>
 
                         <strong>
-                            LOCAL
+                            12:00
                         </strong>
-
-                        <p>
-                            Minha casa
-                        </p>
 
                     </div>
 
                 </div>
 
 
-            </div>
+                <div class="info-card">
+
+                    <div class="info-icon">
+                        📍
+                    </div>
+
+                    <div class="info-texto">
+
+                        <span>
+                            LOCAL
+                        </span>
+
+                        <strong>
+                            Minha casa
+                        </strong>
+
+                    </div>
+
+                </div>
 
 
-            <a
-                class="btn-localizacao"
-                id="btnLocalizacao"
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                📍 VER LOCALIZAÇÃO
-            </a>
+                <button
+                    class="btn-localizacao"
+                    id="btnLocalizacao"
+                    type="button"
+                >
+                    📍 VER LOCALIZAÇÃO
+                </button>
 
-        </section>
-
-
-        <!-- =================================================
-             CONTAGEM REGRESSIVA
-        ================================================== -->
-
-        <section
-            class="contador"
-            id="contador"
-        >
-
-            <p class="secao-tag">
-                CONTAGEM REGRESSIVA
-            </p>
-
-            <h2>
-                ⏳ A MISSÃO COMEÇA EM
-            </h2>
-
-            <div
-                id="countdown"
-                aria-live="polite"
-            >
-                Carregando...
             </div>
 
         </section>
 
 
-        <!-- =================================================
-             CONFIRMAÇÃO
-        ================================================== -->
+        <!-- ============================= -->
+        <!-- CONTAGEM REGRESSIVA -->
+        <!-- ============================= -->
+
+        <section class="contador">
+
+            <div class="contador-conteudo">
+
+                <p class="secao-subtitulo">
+                    CONTAGEM REGRESSIVA
+                </p>
+
+                <h2>
+                    A MISSÃO COMEÇA EM...
+                </h2>
+
+                <div
+                    id="countdown"
+                    class="countdown"
+                >
+
+                    <div class="tempo">
+                        <strong id="dias">
+                            00
+                        </strong>
+
+                        <span>
+                            DIAS
+                        </span>
+                    </div>
+
+
+                    <div class="tempo">
+                        <strong id="horas">
+                            00
+                        </strong>
+
+                        <span>
+                            HORAS
+                        </span>
+                    </div>
+
+
+                    <div class="tempo">
+                        <strong id="minutos">
+                            00
+                        </strong>
+
+                        <span>
+                            MIN
+                        </span>
+                    </div>
+
+
+                    <div class="tempo">
+                        <strong id="segundos">
+                            00
+                        </strong>
+
+                        <span>
+                            SEG
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================= -->
+        <!-- CONFIRMAÇÃO -->
+        <!-- ============================= -->
 
         <section
             class="confirmacao"
@@ -404,36 +407,38 @@
             <div class="confirmacao-conteudo">
 
                 <div class="confirmacao-icon">
-                    🎉
+                    🦸
                 </div>
 
-                <p class="secao-tag">
-                    CENTRAL DE COMANDO
+                <p class="secao-subtitulo">
+                    ÚLTIMA ETAPA
                 </p>
 
                 <h2>
-                    VOCÊ VAI PARTICIPAR?
+                    VOCÊ ACEITA A MISSÃO?
                 </h2>
 
                 <p>
                     Confirme sua presença e faça parte
-                    dessa aventura!
+                    dessa aventura especial!
                 </p>
+
 
                 <button
                     class="btn-confirmar-final"
                     id="btnConfirmarFinal"
                     type="button"
                 >
-                    🦸 CONFIRMAR MINHA PRESENÇA
+                    ✅ CONFIRMAR PRESENÇA
                 </button>
+
 
                 <button
                     class="btn-compartilhar"
                     id="btnCompartilhar"
                     type="button"
                 >
-                    📤 COMPARTILHAR CONVITE
+                    📲 COMPARTILHAR CONVITE
                 </button>
 
             </div>
@@ -441,35 +446,31 @@
         </section>
 
 
-        <!-- =================================================
-             RODAPÉ
-        ================================================== -->
+        <!-- ============================= -->
+        <!-- RODAPÉ -->
+        <!-- ============================= -->
 
         <footer>
 
             <p>
-                🦸 BERNARDO • 4 ANOS
+                ⚡ BERNARDO FURTADO ⚡
             </p>
 
-            <p>
-                Uma aventura inesquecível está chegando!
-            </p>
-
-            <p class="footer-final">
-                ⚡ ATÉ A MISSÃO! ⚡
-            </p>
+            <span>
+                4 ANOS • UMA AVENTURA INESQUECÍVEL
+            </span>
 
         </footer>
+
 
     </main>
 
 
-    <!-- =====================================================
-         JAVASCRIPT
-    ====================================================== -->
+    <!-- ============================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ============================= -->
 
     <script src="script.js"></script>
 
 </body>
 </html>
-```
