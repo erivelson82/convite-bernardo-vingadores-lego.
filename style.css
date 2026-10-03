@@ -1,231 +1,81 @@
+```css
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #101010;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   CONVITE
+========================================================= */
+
+.convite {
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease,
+        visibility 0.8s ease;
+}
+
+.convite.mostrar {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+
 /* =========================================================
    TELA DE ABERTURA
 ========================================================= */
 
 .abertura {
     position: fixed;
-
     inset: 0;
-
     z-index: 9999;
 
     display: flex;
-
+    justify-content: center;
     align-items: center;
 
-    justify-content: center;
-
-    padding: 25px;
+    padding: 24px;
 
     text-align: center;
 
     background:
         radial-gradient(
             circle at center,
-            #12356b 0%,
-            #07152f 55%,
-            #020711 100%
+            #343434 0%,
+            #151515 45%,
+            #050505 100%
         );
-
-    transition:
-        opacity 0.7s ease,
-        transform 0.7s ease;
-}
-
-
-/* brilho central */
-
-.abertura::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 300px;
-
-    height: 300px;
-
-    border-radius: 50%;
-
-    background: rgba(
-        255,
-        212,
-        0,
-        0.12
-    );
-
-    filter: blur(45px);
-
-}
-
-
-/* conteúdo */
-
-.abertura-conteudo {
-
-    position: relative;
-
-    z-index: 2;
-
-    max-width: 500px;
-
-    animation:
-        entradaAbertura 1s ease;
-}
-
-
-/* raio */
-
-.abertura-icon {
-
-    font-size: 70px;
-
-    margin-bottom: 15px;
-
-    animation:
-        raio 1.5s infinite;
-}
-
-
-/* alerta */
-
-.abertura-alerta {
-
-    margin-bottom: 15px;
-
-    font-size: 18px;
-
-    font-weight: 900;
-
-    color: #ffd400;
-
-    letter-spacing: 2px;
-}
-
-
-/* título */
-
-.abertura-titulo {
-
-    margin: 0;
-
-    font-size: 48px;
-
-    line-height: 1.05;
-
-    font-weight: 900;
-
-    color: #ffffff;
-
-    text-shadow:
-        4px 4px 0 #d71920,
-        8px 8px 0 rgba(
-            0,
-            0,
-            0,
-            0.4
-        );
-}
-
-
-/* texto */
-
-.abertura-texto {
-
-    margin-top: 25px;
-
-    font-size: 19px;
-
-    line-height: 1.5;
-}
-
-
-.abertura-subtexto {
-
-    margin-top: 10px;
-
-    font-size: 15px;
-
-    color: #cccccc;
-
-    line-height: 1.5;
-}
-
-
-/* botão */
-
-.btn-entrar {
-
-    margin-top: 30px;
-
-    padding: 18px 30px;
-
-    border: none;
-
-    border-radius: 12px;
-
-    background: #ffd400;
-
-    color: #111111;
-
-    font-size: 17px;
-
-    font-weight: 900;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 7px 0 #a87900;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-
-.btn-entrar:hover {
-
-    transform: translateY(4px);
-
-    box-shadow:
-        0 3px 0 #a87900;
-}
-
-
-.btn-entrar:active {
-
-    transform: translateY(7px);
-
-    box-shadow:
-        0 0 0 #a87900;
-}
-
-
-/* =========================================================
-   FECHAMENTO DA ABERTURA
-========================================================= */
-
-.abertura.fechar {
-
-    opacity: 0;
-
-    transform: scale(1.1);
-
-    pointer-events: none;
-}
-
-
-/* =========================================================
-   CONVITE ESCONDIDO
-========================================================= */
-
-.convite {
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    transform: translateY(20px);
 
     transition:
         opacity 0.7s ease,
@@ -233,143 +83,511 @@
         visibility 0.7s ease;
 }
 
+.abertura::before {
+    content: "";
 
-/* convite revelado */
+    position: absolute;
+    inset: 0;
 
-.convite.mostrar {
+    background:
+        linear-gradient(
+            135deg,
+            transparent 48%,
+            rgba(255, 215, 0, 0.08) 49%,
+            transparent 51%
+        );
 
-    opacity: 1;
+    pointer-events: none;
+}
 
-    visibility: visible;
+.abertura.fechar {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.08);
+}
 
-    transform: translateY(0);
+.abertura-conteudo {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    max-width: 430px;
+
+    animation: entradaAbertura 0.9s ease forwards;
+}
+
+.abertura-icon {
+    font-size: 64px;
+    margin-bottom: 15px;
+
+    animation:
+        raio 1.8s infinite ease-in-out;
+}
+
+.abertura-alerta {
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 4px;
+
+    margin-bottom: 15px;
+
+    color: #ffd400;
+}
+
+.abertura-titulo {
+    font-size: clamp(38px, 11vw, 62px);
+    line-height: 0.95;
+
+    font-weight: 1000;
+    letter-spacing: -2px;
+
+    margin-bottom: 20px;
+}
+
+.abertura-texto {
+    font-size: 18px;
+    line-height: 1.5;
+
+    color: #eeeeee;
+
+    margin-bottom: 8px;
+}
+
+.abertura-subtexto {
+    font-size: 14px;
+    color: #bbbbbb;
+
+    margin-bottom: 30px;
+}
+
+.btn-entrar {
+    width: 100%;
+    min-height: 54px;
+
+    padding: 14px 20px;
+
+    border: 0;
+    border-radius: 12px;
+
+    background: #ffd400;
+    color: #111111;
+
+    font-size: 15px;
+    font-weight: 1000;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.35);
+
+    transition:
+        transform 0.2s ease,
+        filter 0.2s ease;
+}
+
+.btn-entrar:active {
+    transform: scale(0.96);
 }
 
 
 /* =========================================================
-   ANIMAÇÕES DA ABERTURA
+   HERO
 ========================================================= */
 
-@keyframes entradaAbertura {
+.hero {
+    position: relative;
 
-    from {
+    min-height: 100vh;
 
-        opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-        transform:
-            translateY(30px)
-            scale(0.95);
-    }
+    padding: 60px 20px;
 
-    to {
+    text-align: center;
 
-        opacity: 1;
+    overflow: hidden;
 
-        transform:
-            translateY(0)
-            scale(1);
-    }
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.28),
+            rgba(0, 0, 0, 0.78)
+        ),
+        url("assets/images/background.jpg");
+
+    background-size: cover;
+    background-position: center;
 }
 
+.hero::before {
+    content: "";
 
-@keyframes raio {
+    position: absolute;
+    inset: 0;
 
-    0% {
+    background:
+        radial-gradient(
+            circle at center,
+            transparent 20%,
+            rgba(0, 0, 0, 0.5) 100%
+        );
 
-        transform:
-            scale(1)
-            rotate(0deg);
-    }
+    pointer-events: none;
+}
 
-    50% {
+.hero-conteudo {
+    position: relative;
+    z-index: 2;
 
-        transform:
-            scale(1.12)
-            rotate(-5deg);
-    }
+    width: 100%;
+    max-width: 600px;
 
-    100% {
-
-        transform:
-            scale(1)
-            rotate(0deg);
-    }
+    animation: aparecer 1s ease forwards;
 }
 
 
 /* =========================================================
-   MOBILE
+   LOGO
 ========================================================= */
 
-@media (max-width: 600px) {
+.logo {
+    display: inline-block;
 
-    .abertura {
+    padding: 8px 18px;
 
-        padding: 20px;
-    }
+    margin-bottom: 16px;
 
+    border: 3px solid #ffd400;
+    border-radius: 8px;
 
-    .abertura-icon {
+    background: #111111;
 
-        font-size: 55px;
-    }
+    color: #ffd400;
 
+    font-size: clamp(18px, 5vw, 28px);
+    font-weight: 1000;
+    letter-spacing: 3px;
 
-    .abertura-alerta {
+    transform: skew(-5deg);
 
-        font-size: 15px;
+    box-shadow:
+        5px 5px 0 #d71920;
+}
 
-        letter-spacing: 1.5px;
-    }
+.chamada {
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 2px;
 
+    color: #ffffff;
 
-    .abertura-titulo {
+    margin-bottom: 12px;
+}
 
-        font-size: 38px;
-    }
+.raio-decorativo {
+    font-size: 30px;
+    margin-bottom: 4px;
 
-
-    .abertura-texto {
-
-        font-size: 17px;
-    }
-
-
-    .abertura-subtexto {
-
-        font-size: 14px;
-    }
-
-
-    .btn-entrar {
-
-        width: 100%;
-
-        max-width: 320px;
-
-        padding: 17px 20px;
-
-        font-size: 15px;
-    }
-
+    animation: pulso 1.5s infinite ease-in-out;
 }
 
 
 /* =========================================================
-   CELULARES PEQUENOS
+   NOME
 ========================================================= */
 
-@media (max-width: 380px) {
+.hero h1 {
+    font-size: clamp(50px, 14vw, 100px);
+    line-height: 0.9;
 
-    .abertura-titulo {
+    font-weight: 1000;
+    letter-spacing: -4px;
 
-        font-size: 33px;
-    }
+    text-shadow:
+        4px 4px 0 #d71920,
+        7px 7px 0 #000000;
 
-
-    .abertura-icon {
-
-        font-size: 48px;
-    }
-
+    animation: nomeEntrando 1s ease forwards;
 }
+
+.idade {
+    width: 115px;
+    height: 115px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 22px auto 10px;
+
+    border-radius: 50%;
+
+    background: #ffd400;
+    color: #111111;
+
+    border: 7px solid #111111;
+
+    font-size: 78px;
+    line-height: 1;
+    font-weight: 1000;
+
+    box-shadow:
+        7px 7px 0 #d71920;
+
+    animation: pulso 2s infinite ease-in-out;
+}
+
+.hero h2 {
+    font-size: 26px;
+    font-weight: 1000;
+    letter-spacing: 7px;
+
+    margin-bottom: 20px;
+}
+
+.mensagem {
+    max-width: 500px;
+
+    margin: 0 auto 28px;
+
+    font-size: 17px;
+    line-height: 1.55;
+
+    color: #eeeeee;
+}
+
+
+/* =========================================================
+   BOTÃO CONFIRMAR
+========================================================= */
+
+.btn-confirmar,
+.btn-confirmar-final {
+    width: 100%;
+    max-width: 380px;
+
+    min-height: 54px;
+
+    padding: 14px 20px;
+
+    border: 0;
+    border-radius: 12px;
+
+    background: #d71920;
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 1000;
+    letter-spacing: 0.5px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 0 #8f1116;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.btn-confirmar:active,
+.btn-confirmar-final:active {
+    transform: translateY(5px);
+
+    box-shadow:
+        0 2px 0 #8f1116;
+}
+
+
+/* =========================================================
+   MISSÃO
+========================================================= */
+
+.missao {
+    padding: 80px 20px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #161616,
+            #252525
+        );
+
+    text-align: center;
+}
+
+.missao-conteudo {
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.missao-icon {
+    display: block;
+
+    font-size: 58px;
+
+    margin-bottom: 15px;
+
+    animation: flutuar 3s infinite ease-in-out;
+}
+
+.secao-tag {
+    margin-bottom: 10px;
+
+    font-size: 11px;
+    font-weight: 900;
+
+    letter-spacing: 3px;
+
+    color: #ffd400;
+}
+
+.missao h2,
+.herois h2,
+.informacoes h2,
+.contador h2,
+.confirmacao h2 {
+    font-size: clamp(28px, 8vw, 44px);
+    line-height: 1;
+
+    font-weight: 1000;
+
+    margin-bottom: 22px;
+}
+
+.missao p {
+    font-size: 17px;
+    line-height: 1.6;
+
+    color: #dddddd;
+
+    margin-bottom: 12px;
+}
+
+.missao-alerta {
+    display: inline-block;
+
+    margin-top: 20px;
+
+    padding: 10px 14px;
+
+    border-radius: 8px;
+
+    background: #111111;
+
+    color: #ffd400;
+
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   HERÓIS
+========================================================= */
+
+.herois {
+    padding: 80px 20px;
+
+    background: #f2f2f2;
+    color: #111111;
+
+    text-align: center;
+}
+
+.secao-cabecalho {
+    max-width: 650px;
+    margin: 0 auto 35px;
+}
+
+.secao-cabecalho p:not(.secao-tag) {
+    color: #555555;
+    line-height: 1.5;
+}
+
+.herois-grid {
+    width: 100%;
+    max-width: 950px;
+
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+}
+
+.heroi-card {
+    padding: 28px 20px;
+
+    border-radius: 14px;
+
+    background: #ffffff;
+
+    border: 2px solid #dddddd;
+
+    box-shadow:
+        0 8px 0 #d71920;
+
+    transition:
+        transform 0.2s ease;
+}
+
+.heroi-card:active {
+    transform: translateY(4px);
+}
+
+.heroi-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+
+.heroi-card h3 {
+    font-size: 18px;
+    font-weight: 1000;
+
+    margin-bottom: 8px;
+}
+
+.heroi-card p {
+    font-size: 14px;
+    line-height: 1.5;
+
+    color: #555555;
+}
+
+
+/* =========================================================
+   INFORMAÇÕES
+========================================================= */
+
+.informacoes {
+    padding: 80px 20px;
+
+    background: #111111;
+
+    text-align: center;
+}
+
+.informacoes-grid {
+    width: 100%;
+    max-width: 650px;
+
+    margin: 0 auto 30px;
+
+    display: grid;
+    gap: 14px;
+}
+
+.info {
+    display: flex;
+    align-items: center;
+
+    gap: 16px;
+
+    padding: 18px;
+
+    text-align: l
+```
