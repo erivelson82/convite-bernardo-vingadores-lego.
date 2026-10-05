@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +8,19 @@
 
   <!-- SEO -->
   <title>Bernardo 4 Anos | Missão Vingadores LEGO</title>
-  <meta name="description" content="Você foi convocado para a missão mais especial do ano: os 4 anos do Bernardo. Confirme sua presença!">
+  <meta
+    name="description"
+    content="Você foi convocado para a missão mais especial do ano: os 4 anos do Bernardo. Confirme sua presença!"
+  >
   <meta name="robots" content="noindex, nofollow">
 
-  <!-- Open Graph / WhatsApp -->
+  <!-- Open Graph (WhatsApp, Facebook) -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="⚡ Bernardo 4 Anos | Missão Vingadores LEGO">
-  <meta property="og:description" content="Você foi convocado para uma missão especial. Confirme sua presença!">
+  <meta
+    property="og:description"
+    content="Você foi convocado para uma missão especial. Confirme sua presença!"
+  >
   <meta property="og:image" content="assets/preview.jpg">
   <meta property="og:locale" content="pt_BR">
 
@@ -28,16 +35,19 @@
   <!-- Fontes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800;900&display=swap"
+    rel="stylesheet"
+  >
 
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- ============================================
+  <!-- =====================================================
        TELA 1 — ABERTURA
-  ============================================= -->
+  ===================================================== -->
   <section class="abertura" id="abertura" aria-labelledby="abertura-titulo">
     <div class="abertura-conteudo">
 
@@ -60,7 +70,12 @@
         Prepare-se para uma aventura inesquecível.
       </p>
 
-      <button class="btn-principal" id="btnEntrar" type="button">
+      <button
+        class="btn-principal"
+        id="btnEntrar"
+        type="button"
+        data-acao="entrar"
+      >
         <span aria-hidden="true">🚀</span> Entrar na missão
       </button>
 
@@ -68,24 +83,37 @@
   </section>
 
 
-  <!-- ============================================
+  <!-- =====================================================
        CONVITE — 4 ETAPAS
-  ============================================= -->
+  ===================================================== -->
   <main class="convite" id="convite" hidden>
 
     <!-- Indicador de progresso -->
     <nav class="progresso" aria-label="Progresso do convite">
       <ol>
-        <li class="ponto ativo" data-etapa="1" aria-current="step"><span class="sr-only">Etapa 1</span></li>
-        <li class="ponto" data-etapa="2"><span class="sr-only">Etapa 2</span></li>
-        <li class="ponto" data-etapa="3"><span class="sr-only">Etapa 3</span></li>
-        <li class="ponto" data-etapa="4"><span class="sr-only">Etapa 4</span></li>
+        <li class="ponto ativo" data-etapa="1" aria-current="step">
+          <span class="sr-only">Etapa 1</span>
+        </li>
+        <li class="ponto" data-etapa="2">
+          <span class="sr-only">Etapa 2</span>
+        </li>
+        <li class="ponto" data-etapa="3">
+          <span class="sr-only">Etapa 3</span>
+        </li>
+        <li class="ponto" data-etapa="4">
+          <span class="sr-only">Etapa 4</span>
+        </li>
       </ol>
     </nav>
 
 
-    <!-- ETAPA 1 -->
-    <section class="etapa ativa" id="etapa-1" data-etapa="1" aria-labelledby="etapa1-titulo">
+    <!-- ETAPA 1 — BERNARDO -->
+    <section
+      class="etapa ativa"
+      id="etapa-1"
+      data-etapa="1"
+      aria-labelledby="etapa1-titulo"
+    >
       <div class="etapa-conteudo hero">
 
         <p class="logo">Vingadores</p>
@@ -116,8 +144,13 @@
     </section>
 
 
-    <!-- ETAPA 2 -->
-    <section class="etapa" id="etapa-2" data-etapa="2" aria-labelledby="etapa2-titulo">
+    <!-- ETAPA 2 — MISSÃO -->
+    <section
+      class="etapa"
+      id="etapa-2"
+      data-etapa="2"
+      aria-labelledby="etapa2-titulo"
+    >
       <div class="etapa-conteudo">
 
         <div class="icone-grande" aria-hidden="true">🦸</div>
@@ -166,8 +199,13 @@
     </section>
 
 
-    <!-- ETAPA 3 -->
-    <section class="etapa" id="etapa-3" data-etapa="3" aria-labelledby="etapa3-titulo">
+    <!-- ETAPA 3 — DATA E LOCAL -->
+    <section
+      class="etapa"
+      id="etapa-3"
+      data-etapa="3"
+      aria-labelledby="etapa3-titulo"
+    >
       <div class="etapa-conteudo">
 
         <div class="icone-grande" aria-hidden="true">📋</div>
@@ -190,15 +228,14 @@
           </div>
         </dl>
 
-        <a
+        <button
           class="btn-localizacao"
           id="btnLocalizacao"
-          href="https://maps.google.com/?q=Minha+casa"
-          target="_blank"
-          rel="noopener noreferrer"
+          type="button"
+          data-acao="localizacao"
         >
           <span aria-hidden="true">📍</span> Ver localização
-        </a>
+        </button>
 
         <div class="navegacao">
           <button class="btn-secundario" type="button" data-acao="anterior">
@@ -213,8 +250,13 @@
     </section>
 
 
-    <!-- ETAPA 4 -->
-    <section class="etapa" id="etapa-4" data-etapa="4" aria-labelledby="etapa4-titulo">
+    <!-- ETAPA 4 — CONFIRMAÇÃO -->
+    <section
+      class="etapa"
+      id="etapa-4"
+      data-etapa="4"
+      aria-labelledby="etapa4-titulo"
+    >
       <div class="etapa-conteudo confirmacao" id="confirmacao">
 
         <div class="icone-grande" aria-hidden="true">🎉</div>
@@ -229,22 +271,48 @@
         <div class="contador" aria-live="polite">
           <p>A missão começa em</p>
           <div class="countdown" role="timer">
-            <div class="tempo"><strong id="dias">00</strong><span>dias</span></div>
-            <div class="tempo"><strong id="horas">00</strong><span>horas</span></div>
-            <div class="tempo"><strong id="minutos">00</strong><span>min</span></div>
-            <div class="tempo"><strong id="segundos">00</strong><span>seg</span></div>
+            <div class="tempo">
+              <strong id="dias">00</strong>
+              <span>dias</span>
+            </div>
+            <div class="tempo">
+              <strong id="horas">00</strong>
+              <span>horas</span>
+            </div>
+            <div class="tempo">
+              <strong id="minutos">00</strong>
+              <span>min</span>
+            </div>
+            <div class="tempo">
+              <strong id="segundos">00</strong>
+              <span>seg</span>
+            </div>
           </div>
         </div>
 
-        <button class="btn-principal btn-confirmar" id="btnConfirmarFinal" type="button">
+        <button
+          class="btn-principal btn-confirmar"
+          id="btnConfirmarFinal"
+          type="button"
+          data-acao="confirmar"
+        >
           <span aria-hidden="true">✅</span> Confirmar presença
         </button>
 
-        <button class="btn-compartilhar" id="btnCompartilhar" type="button">
+        <button
+          class="btn-compartilhar"
+          id="btnCompartilhar"
+          type="button"
+          data-acao="compartilhar"
+        >
           <span aria-hidden="true">📲</span> Compartilhar convite
         </button>
 
-        <button class="btn-secundario voltar-final" type="button" data-acao="anterior">
+        <button
+          class="btn-secundario voltar-final"
+          type="button"
+          data-acao="anterior"
+        >
           <span aria-hidden="true">←</span> Voltar
         </button>
 
@@ -252,11 +320,18 @@
     </section>
 
 
+    <!-- RODAPÉ -->
     <footer>
-      <strong><span aria-hidden="true">⚡</span> Bernardo Furtado <span aria-hidden="true">⚡</span></strong>
+      <strong>
+        <span aria-hidden="true">⚡</span>
+        Bernardo Furtado
+        <span aria-hidden="true">⚡</span>
+      </strong>
       <span>4 anos • Uma aventura inesquecível</span>
     </footer>
+
   </main>
+
 
   <noscript>
     <p class="noscript-aviso">
@@ -266,5 +341,6 @@
   </noscript>
 
   <script src="script.js"></script>
+
 </body>
 </html>
