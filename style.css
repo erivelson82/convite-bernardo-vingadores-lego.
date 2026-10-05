@@ -1,4 +1,10 @@
 /* =====================================================
+   BERNARDO 4 ANOS · VINGADORES LEGO
+   Estilos — Design tokens, responsivo, acessível
+===================================================== */
+
+
+/* =====================================================
    DESIGN TOKENS
 ===================================================== */
 :root {
@@ -22,7 +28,7 @@
   --c-on-brand:      #111111;
   --c-accent:        #4c8dff;
 
-  /* Gradiente de fundo (reutilizável) */
+  /* Gradiente reutilizável */
   --grad-bg:
     radial-gradient(
       circle at 50% 15%,
@@ -40,9 +46,9 @@
   --fs-md:  0.9375rem; /* 15px */
   --fs-lg:  1.0625rem; /* 17px */
   --fs-xl:  1.25rem;   /* 20px */
-  --fs-2xl: clamp(1.875rem, 9vw, 2.8125rem);  /* h2 */
-  --fs-hero: clamp(3rem, 15vw, 4.6875rem);    /* nome */
-  --fs-mega: clamp(2.5rem, 12vw, 4.0625rem);  /* abertura */
+  --fs-2xl: clamp(1.875rem, 9vw, 2.8125rem);
+  --fs-hero: clamp(3rem, 15vw, 4.6875rem);
+  --fs-mega: clamp(2.5rem, 12vw, 4.0625rem);
 
   --fw-regular: 400;
   --fw-semibold: 600;
@@ -84,9 +90,10 @@
   --dur-slow: 700ms;
 
   /* Layout */
-  --container: 30rem; /* 480px */
+  --container: 30rem;
   --z-overlay: 9999;
   --z-progress: 1000;
+  --z-toast: 10000;
 }
 
 
@@ -152,18 +159,18 @@ a {
   text-decoration: none;
 }
 
-/* Foco visível acessível */
 :focus-visible {
   outline: 2px solid var(--c-accent);
   outline-offset: 3px;
   border-radius: var(--r-sm);
 }
 
-/* Utilitário acessível */
 .sr-only {
   position: absolute;
-  width: 1px; height: 1px;
-  padding: 0; margin: -1px;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
   overflow: hidden;
   clip: rect(0 0 0 0);
   white-space: nowrap;
@@ -201,6 +208,7 @@ a {
   opacity: 0;
   visibility: hidden;
   transform: scale(1.08);
+  pointer-events: none;
 }
 
 .abertura-conteudo {
@@ -262,6 +270,10 @@ a {
     visibility var(--dur-slow) var(--ease-out);
 }
 
+.convite[hidden] {
+  display: block; /* sobrescreve o display: none padrão do atributo */
+}
+
 .convite.mostrar {
   opacity: 1;
   visibility: visible;
@@ -283,7 +295,6 @@ a {
 .progresso ol {
   display: flex;
   align-items: center;
-  gap: 0;
 }
 
 .ponto {
@@ -291,6 +302,7 @@ a {
   height: 0.6875rem;
   border-radius: var(--r-full);
   background: rgba(255, 255, 255, 0.25);
+  flex: 0 0 auto;
   transition:
     background var(--dur-base) var(--ease-out),
     transform var(--dur-base) var(--ease-out);
@@ -301,7 +313,6 @@ a {
   transform: scale(1.25);
 }
 
-/* Linha entre pontos — usando ::before em cada li (exceto o primeiro) */
 .progresso li + li {
   flex: 1;
   display: flex;
@@ -745,89 +756,25 @@ footer span {
 
 
 /* =====================================================
-   NOSCRIPT
+   TOAST
 ===================================================== */
-.noscript-aviso {
-  padding: var(--sp-6);
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: var(--sp-6);
+  transform: translate(-50%, 1.5rem);
+
+  z-index: var(--z-toast);
+  width: calc(100% - var(--sp-8));
+  max-width: 25rem;
+  padding: var(--sp-4);
+
+  border-radius: var(--r-md);
+  background: #111;
+  color: var(--c-text);
   text-align: center;
-  background: #1a0f0f;
-  color: #ffb4b4;
-  border-top: 2px solid #b33;
-}
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-wide);
 
-
-/* =====================================================
-   ANIMAÇÕES
-===================================================== */
-@keyframes entrada {
-  from { opacity: 0; transform: translateY(1.5rem); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes entrarEtapa {
-  from { opacity: 0; transform: translateX(1.5rem); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes pulsar {
-  0%, 100% { transform: scale(1); }
-  50%      { transform: scale(1.08); }
-}
-
-@keyframes flutuar {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-0.5rem); }
-}
-
-
-/* =====================================================
-   ACESSIBILIDADE — MOVIMENTO REDUZIDO
-===================================================== */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-
-/* =====================================================
-   RESPONSIVO
-===================================================== */
-
-/* Tablet ≥ 640px */
-@media (min-width: 40rem) {
-  .etapa {
-    padding-top: 5.625rem;
-  }
-}
-
-/* Desktop ≥ 900px */
-@media (min-width: 56.25rem) {
-  .cards-missao {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .card-missao {
-    display: block;
-    text-align: center;
-  }
-
-  .card-missao > span {
-    display: block;
-    margin-bottom: var(--sp-3);
-  }
-
-  .card-missao small {
-    display: block;
-    margin-top: var(--sp-1);
-  }
-
-  .etapa-conteudo {
-    max-width: 34rem;
-  }
-}
+  box-shadow: var(--sh-lg
