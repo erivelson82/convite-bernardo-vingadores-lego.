@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0d17">
+  <title>Bernardo 4 Anos | Missão Vingadores LEGO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="pagina-convite">
+
+  <main class="convite-principal">
+    
+    <!-- SEÇÃO HERO / BERNARDO -->
+    <section class="etapa ativa" aria-labelledby="etapa1-titulo">
+      <div class="etapa-conteudo hero">
+        <p class="logo">Vingadores</p>
+        <p class="mini-titulo">Uma missão especial</p>
+
+        <div class="raio" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="72" height="72">
+            <path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/>
+          </svg>
+        </div>
+
+        <p class="apresentacao">O herói da vez é</p>
+        <h1 class="nome" id="etapa1-titulo">Bernardo</h1>
+
+        <div class="idade" aria-label="4 anos">4</div>
+        <h2>anos</h2>
+
+        <p class="texto-destaque">
+          O agente Bernardo está completando 4 anos e precisa dos seus melhores aliados para essa grande aventura!
+        </p>
+
+        <!-- DADOS DA MISSAO -->
+        <dl class="informacoes">
+          <div class="informacao">
+            <dt><span aria-hidden="true">📅</span> Data</dt>
+            <dd><time datetime="2026-11-29">29 de novembro de 2026</time></dd>
+          </div>
+          <div class="informacao">
+            <dt><span aria-hidden="true">⏰</span> Horário</dt>
+            <dd><time datetime="12:00">12h00</time></dd>
+          </div>
+          <div class="informacao">
+            <dt><span aria-hidden="true">📍</span> Local</dt>
+            <dd>Minha casa</dd>
+          </div>
+        </dl>
+
+        <!-- BOTÕES DE AÇÃO -->
+        <div class="acoes-grupo">
+          <button class="btn-localizacao" type="button" data-acao="localizacao">
+            <span aria-hidden="true">📍</span> Ver localização
+          </button>
+
+          <button class="btn-principal btn-confirmar" type="button" data-acao="confirmar">
+            <span aria-hidden="true">✅</span> Confirmar presença
+          </button>
+
+          <button class="btn-compartilhar" type="button" data-acao="compartilhar">
+            <span aria-hidden="true">📲</span> Compartilhar convite
+          </button>
+        </div>
+
+        <!-- CONTADOR REGRESSIVO -->
+        <div class="contador" aria-live="polite">
+          <p>A missão começa em</p>
+          <div class="countdown" role="timer">
+            <div class="tempo"><strong id="dias">00</strong><span>dias</span></div>
+            <div class="tempo"><strong id="horas">00</strong><span>horas</span></div>
+            <div class="tempo"><strong id="minutos">00</strong><span>min</span></div>
+            <div class="tempo"><strong id="segundos">00</strong><span>seg</span></div>
+          </div>
+        </div>
+
+        <div style="margin-top: 2rem;">
+          <a href="index.html" class="btn-secundario">← Voltar à capa</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <strong>
+      <span aria-hidden="true">⚡</span>
+      Bernardo Furtado
+      <span aria-hidden="true">⚡</span>
+    </strong>
+    <span>4 anos • Uma aventura inesquecível</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
