@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -14,12 +13,202 @@
   <meta property="og:url" content="https://erivelson82.github.io/convite-bernardo-vingadores-lego/">
   <meta property="og:image" content="https://erivelson82.github.io/convite-bernardo-vingadores-lego/assets/preview.jpg">
 
-  <link rel="icon" href="assets/favicon.svg">
-  <link rel="stylesheet" href="style.css">
+  <!-- Favicon embutido (antes apontava para um arquivo inexistente) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦸</text></svg>">
 
   <style>
+    /* ===== RESET / BASE ===== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
     [hidden] {
       display: none !important;
+    }
+
+    :root {
+      --vermelho: #d62828;
+      --vermelho-escuro: #7f1010;
+      --amarelo: #f5c400;
+      --amarelo-escuro: #b08e00;
+      --azul-escuro: #0a1a33;
+      --azul: #12294d;
+      --azul-claro: #1e3f70;
+      --texto: #e9f0fa;
+      --texto-suave: #b9c8de;
+      --verde: #25d366;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: "Trebuchet MS", "Segoe UI", system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      color: var(--texto);
+      background-color: var(--azul-escuro);
+      background-image:
+        radial-gradient(circle at 50% 0%, rgba(214, 40, 40, 0.35), transparent 55%),
+        radial-gradient(circle at 8% 18%, rgba(245, 196, 0, 0.12), transparent 40%),
+        radial-gradient(circle at 92% 85%, rgba(30, 63, 112, 0.65), transparent 45%);
+      background-attachment: fixed;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.2;
+      margin: 0 0 0.6em;
+    }
+
+    p {
+      margin: 0 0 1em;
+    }
+
+    strong {
+      color: var(--amarelo);
+    }
+
+    /* ===== BOTÕES ===== */
+    button {
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      border-radius: 999px;
+      padding: 14px 26px;
+      background: var(--amarelo);
+      color: #1a1a1a;
+      box-shadow: 0 4px 0 var(--amarelo-escuro);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    }
+
+    button:hover {
+      filter: brightness(1.07);
+    }
+
+    button:active {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0 var(--amarelo-escuro);
+    }
+
+    button:focus-visible {
+      outline: 3px solid var(--amarelo);
+      outline-offset: 4px;
+    }
+
+    /* ===== TELA DE ABERTURA ===== */
+    .abertura {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+
+    .conteudo-abertura {
+      width: min(640px, 100%);
+      padding: 40px 26px;
+      text-align: center;
+      border-radius: 24px;
+      border: 4px solid var(--amarelo);
+      background: linear-gradient(160deg, var(--azul) 0%, var(--azul-escuro) 100%);
+      box-shadow:
+        0 0 0 8px rgba(214, 40, 40, 0.85),
+        0 24px 60px rgba(0, 0, 0, 0.6);
+    }
+
+    .conteudo-abertura h1 {
+      font-size: clamp(1.7rem, 7vw, 2.5rem);
+      color: var(--amarelo);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .conteudo-abertura h2 {
+      font-size: clamp(1.2rem, 5vw, 1.6rem);
+      color: var(--texto);
+    }
+
+    .conteudo-abertura > p:first-child {
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--vermelho);
+      text-shadow: 0 0 12px rgba(214, 40, 40, 0.6);
+    }
+
+    #btnEntrar {
+      margin-top: 12px;
+      font-size: 1.1rem;
+      padding: 16px 34px;
+    }
+
+    /* ===== CONVITE ===== */
+    .convite {
+      width: min(760px, 100%);
+      margin: 0 auto;
+      padding: 32px 16px 48px;
+    }
+
+    .cabecalho {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .cabecalho p:first-child {
+      margin: 0;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: var(--vermelho);
+    }
+
+    .cabecalho h1 {
+      font-size: clamp(1.4rem, 6vw, 2.1rem);
+      color: var(--amarelo);
+      margin: 0.3em 0;
+    }
+
+    .cabecalho p:last-child {
+      color: var(--texto-suave);
+      margin: 0;
+    }
+
+    /* ===== INDICADORES ===== */
+    .pontos {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .ponto {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.25);
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .ponto.ativo {
+      background: var(--amarelo);
+      transform: scale(1.3);
+      box-shadow: 0 0 12px rgba(245, 196, 0, 0.8);
+    }
+
+    /* ===== ETAPAS ===== */
+    .etapa {
+      border-radius: 20px;
+      border: 3px solid var(--azul-claro);
+      padding: 28px 22px;
+      background: linear-gradient(160deg, rgba(18, 41, 77, 0.95), rgba(10, 26, 51, 0.95));
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
     }
 
     .etapa:not(.ativa) {
@@ -42,6 +231,63 @@
       }
     }
 
+    .etapa h2 {
+      font-size: clamp(1.2rem, 5vw, 1.6rem);
+      color: var(--amarelo);
+    }
+
+    /* ===== INFORMAÇÕES ===== */
+    .informacao {
+      display: grid;
+      gap: 10px;
+      margin: 20px 0;
+      padding: 18px 20px;
+      border-left: 6px solid var(--vermelho);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .informacao p {
+      margin: 0;
+    }
+
+    /* ===== CONTADOR ===== */
+    .contador {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 24px 0;
+    }
+
+    .contador > div {
+      padding: 14px 4px;
+      text-align: center;
+      border-radius: 14px;
+      border: 2px solid rgba(245, 196, 0, 0.4);
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .contador strong {
+      display: block;
+      font-size: clamp(1.3rem, 5vw, 2rem);
+      color: var(--amarelo);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .contador span {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--texto-suave);
+    }
+
+    .aviso {
+      text-align: center;
+      font-weight: 700;
+      color: var(--amarelo);
+    }
+
+    /* ===== NAVEGAÇÃO ===== */
     .navegacao {
       display: flex;
       justify-content: center;
@@ -50,31 +296,23 @@
       margin-top: 24px;
     }
 
-    .navegacao button,
-    #btnEntrar,
-    .botoes-finais button {
-      cursor: pointer;
+    .navegacao button {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--texto);
+      border: 2px solid rgba(255, 255, 255, 0.28);
+      box-shadow: none;
     }
 
-    .pontos {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin: 20px 0;
+    .navegacao button:hover {
+      background: rgba(255, 255, 255, 0.18);
+      filter: none;
     }
 
-    .ponto {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: #aaa;
+    .navegacao button:active {
+      transform: translateY(2px);
     }
 
-    .ponto.ativo {
-      background: #f5c400;
-      transform: scale(1.2);
-    }
-
+    /* ===== BOTÕES FINAIS ===== */
     .botoes-finais {
       display: flex;
       justify-content: center;
@@ -83,9 +321,65 @@
       margin-top: 20px;
     }
 
-    button:focus-visible {
-      outline: 3px solid #f5c400;
-      outline-offset: 4px;
+    .botoes-finais button[data-acao="confirmar"] {
+      background: var(--verde);
+      color: #06281a;
+      box-shadow: 0 4px 0 #128c42;
+    }
+
+    .botoes-finais button[data-acao="confirmar"]:active {
+      box-shadow: 0 1px 0 #128c42;
+    }
+
+    .botoes-finais button[data-acao="compartilhar"] {
+      background: #2f7de1;
+      color: #fff;
+      box-shadow: 0 4px 0 #1b4f96;
+    }
+
+    .botoes-finais button[data-acao="compartilhar"]:active {
+      box-shadow: 0 1px 0 #1b4f96;
+    }
+
+    /* ===== RODAPÉ ===== */
+    footer {
+      margin-top: 28px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--texto-suave);
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    /* ===== RESPONSIVO ===== */
+    @media (max-width: 420px) {
+      .contador {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .conteudo-abertura {
+        padding: 32px 18px;
+      }
+
+      .etapa {
+        padding: 22px 16px;
+      }
+    }
+
+    /* ===== ACESSIBILIDADE ===== */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
     }
   </style>
 </head>
@@ -99,19 +393,13 @@
 
       <h1>Você foi convocado!</h1>
 
-      <p>
-        Uma grande aventura está prestes a começar...
-      </p>
+      <p>Uma grande aventura está prestes a começar...</p>
 
       <h2>Bernardo vai completar 4 anos!</h2>
 
-      <p>
-        Prepare-se para uma missão especial com os Vingadores LEGO.
-      </p>
+      <p>Prepare-se para uma missão especial com os Vingadores LEGO.</p>
 
-      <button id="btnEntrar" type="button">
-        🦸 Abrir convite
-      </button>
+      <button id="btnEntrar" type="button">🦸 Abrir convite</button>
     </div>
   </section>
 
@@ -125,15 +413,15 @@
     </header>
 
     <!-- INDICADORES DAS ETAPAS -->
-    <nav class="pontos" aria-label="Etapas do convite">
-      <span class="ponto ativo" aria-label="Etapa 1"></span>
-      <span class="ponto" aria-label="Etapa 2"></span>
-      <span class="ponto" aria-label="Etapa 3"></span>
-      <span class="ponto" aria-label="Etapa 4"></span>
+    <nav class="pontos" aria-label="Progresso do convite">
+      <span class="ponto ativo" role="img" aria-label="Etapa 1 de 4"></span>
+      <span class="ponto" role="img" aria-label="Etapa 2 de 4"></span>
+      <span class="ponto" role="img" aria-label="Etapa 3 de 4"></span>
+      <span class="ponto" role="img" aria-label="Etapa 4 de 4"></span>
     </nav>
 
     <!-- ETAPA 1 -->
-    <section class="etapa ativa" id="etapa-1">
+    <section class="etapa ativa" id="etapa-1" aria-label="Etapa 1 de 4">
       <h2>🦸 Uma missão para você!</h2>
 
       <p>
@@ -148,14 +436,12 @@
       </p>
 
       <div class="navegacao">
-        <button type="button" data-acao="proxima">
-          Aceitar missão ➜
-        </button>
+        <button type="button" data-acao="proxima">Aceitar missão ➜</button>
       </div>
     </section>
 
     <!-- ETAPA 2 -->
-    <section class="etapa" id="etapa-2">
+    <section class="etapa" id="etapa-2" aria-label="Etapa 2 de 4">
       <h2>📅 Anote na agenda!</h2>
 
       <div class="informacao">
@@ -169,25 +455,18 @@
       <p>Esperamos você para essa aventura!</p>
 
       <div class="navegacao">
-        <button type="button" data-acao="anterior">
-          ← Voltar
-        </button>
-
-        <button type="button" data-acao="proxima">
-          Continuar ➜
-        </button>
+        <button type="button" data-acao="anterior">← Voltar</button>
+        <button type="button" data-acao="proxima">Continuar ➜</button>
       </div>
     </section>
 
     <!-- ETAPA 3 -->
-    <section class="etapa" id="etapa-3">
+    <section class="etapa" id="etapa-3" aria-label="Etapa 3 de 4">
       <h2>⏳ Contagem regressiva</h2>
 
-      <p>
-        A missão está chegando! Falta pouco para a grande festa.
-      </p>
+      <p>A missão está chegando! Falta pouco para a grande festa.</p>
 
-      <div class="contador">
+      <div class="contador" id="contador" aria-live="polite">
         <div>
           <strong id="dias">--</strong>
           <span>Dias</span>
@@ -209,43 +488,31 @@
         </div>
       </div>
 
-      <div class="navegacao">
-        <button type="button" data-acao="anterior">
-          ← Voltar
-        </button>
+      <p class="aviso" id="avisoFesta" hidden>
+        🎉 A festa começou! Nos vemos lá, super-herói!
+      </p>
 
-        <button type="button" data-acao="proxima">
-          Última etapa ➜
-        </button>
+      <div class="navegacao">
+        <button type="button" data-acao="anterior">← Voltar</button>
+        <button type="button" data-acao="proxima">Última etapa ➜</button>
       </div>
     </section>
 
     <!-- ETAPA 4 -->
-    <section class="etapa" id="etapa-4">
+    <section class="etapa" id="etapa-4" aria-label="Etapa 4 de 4">
       <h2>🛡️ Você aceita essa missão?</h2>
 
-      <p>
-        Sua presença é muito importante para o Bernardo!
-      </p>
+      <p>Sua presença é muito importante para o Bernardo!</p>
 
-      <p>
-        Confirme sua presença e compartilhe o convite com a família.
-      </p>
+      <p>Confirme sua presença e compartilhe o convite com a família.</p>
 
       <div class="botoes-finais">
-        <button type="button" data-acao="confirmar">
-          ✅ Confirmar presença
-        </button>
-
-        <button type="button" data-acao="compartilhar">
-          📲 Compartilhar convite
-        </button>
+        <button type="button" data-acao="confirmar">✅ Confirmar presença</button>
+        <button type="button" data-acao="compartilhar">📲 Compartilhar convite</button>
       </div>
 
       <div class="navegacao">
-        <button type="button" data-acao="anterior">
-          ← Voltar
-        </button>
+        <button type="button" data-acao="anterior">← Voltar</button>
       </div>
     </section>
 
@@ -257,21 +524,43 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      const abertura = document.getElementById("abertura");
-      const convite = document.getElementById("convite");
-      const btnEntrar = document.getElementById("btnEntrar");
-      const etapas = Array.from(document.querySelectorAll(".etapa"));
-      const pontos = Array.from(document.querySelectorAll(".ponto"));
+      "use strict";
 
-      let etapaAtual = 0;
+      /* ====== CONFIGURAÇÕES ====== */
+      // Coloque aqui o número que vai receber as confirmações.
+      // Formato: código do país + DDD + número (ex.: "5511999999999").
+      // Deixe vazio ("") para o WhatsApp abrir a lista de contatos.
+      var WHATSAPP_NUMERO = "";
 
+      var DATA_FESTA = new Date("2026-11-29T12:00:00-03:00");
+
+      var MENSAGEM_CONFIRMACAO =
+        "Olá! Confirmo minha presença no aniversário de 4 anos do Bernardo, dia 29/11/2026, às 12h. 🎉";
+
+      /* ====== ELEMENTOS ====== */
+      var abertura = document.getElementById("abertura");
+      var convite = document.getElementById("convite");
+      var btnEntrar = document.getElementById("btnEntrar");
+      var etapas = Array.prototype.slice.call(document.querySelectorAll(".etapa"));
+      var pontos = Array.prototype.slice.call(document.querySelectorAll(".ponto"));
+
+      var elDias = document.getElementById("dias");
+      var elHoras = document.getElementById("horas");
+      var elMinutos = document.getElementById("minutos");
+      var elSegundos = document.getElementById("segundos");
+      var avisoFesta = document.getElementById("avisoFesta");
+      var contador = document.getElementById("contador");
+
+      var etapaAtual = 0;
+
+      /* ====== NAVEGAÇÃO ENTRE ETAPAS ====== */
       function mostrarEtapa(indice) {
         if (indice < 0 || indice >= etapas.length) return;
 
         etapaAtual = indice;
 
         etapas.forEach(function (etapa, i) {
-          const ativa = i === etapaAtual;
+          var ativa = i === etapaAtual;
           etapa.classList.toggle("ativa", ativa);
           etapa.hidden = !ativa;
         });
@@ -283,90 +572,96 @@
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
-      // ABRIR O CONVITE
+      /* ====== ABRIR O CONVITE ====== */
       btnEntrar.addEventListener("click", function () {
         abertura.hidden = true;
         convite.hidden = false;
         mostrarEtapa(0);
       });
 
-      // AVANÇAR E VOLTAR ENTRE AS ETAPAS
-      document.querySelectorAll("[data-acao]").forEach(function (botao) {
-        botao.addEventListener("click", function () {
-          const acao = botao.dataset.acao;
-
-          if (acao === "proxima") {
-            mostrarEtapa(etapaAtual + 1);
-          }
-
-          if (acao === "anterior") {
-            mostrarEtapa(etapaAtual - 1);
-          }
-
-          if (acao === "confirmar") {
-            const mensagem = encodeURIComponent(
-              "Olá! Confirmo minha presença no aniversário de 4 anos do Bernardo, dia 29/11/2026, às 12h. 🎉"
-            );
-
-            window.open(
-              "https://wa.me/?text=" + mensagem,
-              "_blank",
-              "noopener,noreferrer"
-            );
-          }
-
-          if (acao === "compartilhar") {
-            const url = window.location.href;
-            const dados = {
-              title: "Aniversário do Bernardo - 4 anos",
-              text: "Você está convidado para a aventura dos Vingadores LEGO!",
-              url: url
-            };
-
-            if (navigator.share) {
-              navigator.share(dados).catch(function () {});
-            } else if (navigator.clipboard && window.isSecureContext) {
-              navigator.clipboard.writeText(url)
-                .then(function () {
-                  alert("Link do convite copiado! Agora é só enviar para a família.");
-                })
-                .catch(function () {
-                  prompt("Copie o link do convite:", url);
-                });
-            } else {
+      /* ====== COMPARTILHAR ====== */
+      function copiarLink(url) {
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(url)
+            .then(function () {
+              alert("Link do convite copiado! Agora é só enviar para a família.");
+            })
+            .catch(function () {
               prompt("Copie o link do convite:", url);
-            }
-          }
-        });
-      });
+            });
+        } else {
+          prompt("Copie o link do convite:", url);
+        }
+      }
 
-      // CONTAGEM REGRESSIVA
-      function atualizarContagem() {
-        const dataFesta = new Date("2026-11-29T12:00:00-03:00");
-        const agora = new Date();
-        const diferenca = dataFesta.getTime() - agora.getTime();
+      function compartilharConvite() {
+        var url = window.location.href;
 
-        if (diferenca <= 0) {
-          document.getElementById("dias").textContent = "0";
-          document.getElementById("horas").textContent = "0";
-          document.getElementById("minutos").textContent = "0";
-          document.getElementById("segundos").textContent = "0";
+        if (navigator.share) {
+          navigator.share({
+            title: "Aniversário do Bernardo - 4 anos",
+            text: "Você está convidado para a aventura dos Vingadores LEGO!",
+            url: url
+          }).catch(function (erro) {
+            // Se o usuário apenas cancelou, não faz nada.
+            if (erro && erro.name === "AbortError") return;
+            copiarLink(url);
+          });
           return;
         }
 
-        document.getElementById("dias").textContent =
-          Math.floor(diferenca / (1000 * 60 * 60 * 24));
-
-        document.getElementById("horas").textContent =
-          Math.floor((diferenca / (1000 * 60 * 60)) % 24);
-
-        document.getElementById("minutos").textContent =
-          Math.floor((diferenca / (1000 * 60)) % 60);
-
-        document.getElementById("segundos").textContent =
-          Math.floor((diferenca / 1000) % 60);
+        copiarLink(url);
       }
 
+      /* ====== CONFIRMAR PRESENÇA ====== */
+      function confirmarPresenca() {
+        var texto = encodeURIComponent(MENSAGEM_CONFIRMACAO);
+        var url = WHATSAPP_NUMERO
+          ? "https://wa.me/" + WHATSAPP_NUMERO + "?text=" + texto
+          : "https://wa.me/?text=" + texto;
+
+        var janela = window.open(url, "_blank", "noopener,noreferrer");
+        if (janela) janela.focus();
+      }
+
+      /* ====== AÇÕES DOS BOTÕES ====== */
+      document.querySelectorAll("[data-acao]").forEach(function (botao) {
+        botao.addEventListener("click", function () {
+          var acao = botao.dataset.acao;
+
+          if (acao === "proxima") mostrarEtapa(etapaAtual + 1);
+          if (acao === "anterior") mostrarEtapa(etapaAtual - 1);
+          if (acao === "confirmar") confirmarPresenca();
+          if (acao === "compartilhar") compartilharConvite();
+        });
+      });
+
+      /* ====== CONTAGEM REGRESSIVA ====== */
+      function doisDigitos(valor) {
+        return String(valor).padStart(2, "0");
+      }
+
+      function atualizarContagem() {
+        var diferenca = DATA_FESTA.getTime() - Date.now();
+
+        if (diferenca <= 0) {
+          elDias.textContent = "00";
+          elHoras.textContent = "00";
+          elMinutos.textContent = "00";
+          elSegundos.textContent = "00";
+
+          if (contador) contador.hidden = true;
+          if (avisoFesta) avisoFesta.hidden = false;
+          return;
+        }
+
+        elDias.textContent = doisDigitos(Math.floor(diferenca / 86400000));
+        elHoras.textContent = doisDigitos(Math.floor(diferenca / 3600000) % 24);
+        elMinutos.textContent = doisDigitos(Math.floor(diferenca / 60000) % 60);
+        elSegundos.textContent = doisDigitos(Math.floor(diferenca / 1000) % 60);
+      }
+
+      /* ====== INICIALIZAÇÃO ====== */
       mostrarEtapa(0);
       atualizarContagem();
       setInterval(atualizarContagem, 1000);
@@ -375,4 +670,3 @@
 
 </body>
 </html>
-```
