@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -14,20 +15,40 @@
   >
   <meta name="robots" content="noindex, nofollow">
 
-  <!-- Open Graph (WhatsApp, Facebook) -->
+  <!-- Compartilhamento: WhatsApp e Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="⚡ Bernardo 4 Anos | Missão Vingadores LEGO">
+  <meta
+    property="og:title"
+    content="⚡ Bernardo 4 Anos | Missão Vingadores LEGO"
+  >
   <meta
     property="og:description"
     content="Você foi convocado para uma missão especial. Confirme sua presença!"
   >
-  <meta property="og:image" content="assets/preview.jpg">
+  <meta
+    property="og:image"
+    content="https://erivelson82.github.io/convite-bernardo-vingadores-lego/assets/preview.jpg"
+  >
+  <meta
+    property="og:url"
+    content="https://erivelson82.github.io/convite-bernardo-vingadores-lego/"
+  >
   <meta property="og:locale" content="pt_BR">
 
-  <!-- Twitter -->
+  <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="⚡ Bernardo 4 Anos | Missão Vingadores LEGO">
-  <meta name="twitter:description" content="Você foi convocado para uma missão especial.">
+  <meta
+    name="twitter:title"
+    content="⚡ Bernardo 4 Anos | Missão Vingadores LEGO"
+  >
+  <meta
+    name="twitter:description"
+    content="Você foi convocado para uma missão especial."
+  >
+  <meta
+    name="twitter:image"
+    content="https://erivelson82.github.io/convite-bernardo-vingadores-lego/assets/preview.jpg"
+  >
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
@@ -40,15 +61,18 @@
     rel="stylesheet"
   >
 
+  <!-- Estilos -->
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <!-- =====================================================
-       TELA 1 — ABERTURA
-  ===================================================== -->
-  <section class="abertura" id="abertura" aria-labelledby="abertura-titulo">
+  <!-- TELA 1 — ABERTURA -->
+  <section
+    class="abertura"
+    id="abertura"
+    aria-labelledby="abertura-titulo"
+  >
     <div class="abertura-conteudo">
 
       <div class="abertura-icon" aria-hidden="true">
@@ -66,6 +90,7 @@
       <p class="abertura-texto">
         Uma missão especial está prestes a começar.
       </p>
+
       <p class="abertura-subtexto">
         Prepare-se para uma aventura inesquecível.
       </p>
@@ -83,9 +108,7 @@
   </section>
 
 
-  <!-- =====================================================
-       CONVITE — 4 ETAPAS
-  ===================================================== -->
+  <!-- CONVITE — 4 ETAPAS -->
   <main class="convite" id="convite" hidden>
 
     <!-- Indicador de progresso -->
@@ -136,7 +159,11 @@
           Uma aventura incrível está prestes a começar.
         </p>
 
-        <button class="btn-principal" type="button" data-acao="proxima">
+        <button
+          class="btn-principal"
+          type="button"
+          data-acao="proxima"
+        >
           Próximo <span aria-hidden="true">→</span>
         </button>
 
@@ -169,11 +196,13 @@
             <strong>Coragem</strong>
             <small>Para encarar grandes aventuras.</small>
           </li>
+
           <li class="card-missao">
             <span aria-hidden="true">⚡</span>
             <strong>Energia</strong>
             <small>Para brincar e se divertir.</small>
           </li>
+
           <li class="card-missao">
             <span aria-hidden="true">🤝</span>
             <strong>Amizade</strong>
@@ -187,10 +216,19 @@
         </p>
 
         <div class="navegacao">
-          <button class="btn-secundario" type="button" data-acao="anterior">
+          <button
+            class="btn-secundario"
+            type="button"
+            data-acao="anterior"
+          >
             <span aria-hidden="true">←</span> Voltar
           </button>
-          <button class="btn-principal" type="button" data-acao="proxima">
+
+          <button
+            class="btn-principal"
+            type="button"
+            data-acao="proxima"
+          >
             Próximo <span aria-hidden="true">→</span>
           </button>
         </div>
@@ -216,12 +254,22 @@
         <dl class="informacoes">
           <div class="informacao">
             <dt><span aria-hidden="true">📅</span> Data</dt>
-            <dd><time datetime="2026-12-12">12 de dezembro de 2026</time></dd>
+            <dd>
+              <time datetime="2026-11-29">
+                29 de novembro de 2026
+              </time>
+            </dd>
           </div>
+
           <div class="informacao">
             <dt><span aria-hidden="true">⏰</span> Horário</dt>
-            <dd><time datetime="12:00">12h00</time></dd>
+            <dd>
+              <time datetime="2026-11-29T12:00:00-03:00">
+                12h00
+              </time>
+            </dd>
           </div>
+
           <div class="informacao">
             <dt><span aria-hidden="true">📍</span> Local</dt>
             <dd>Minha casa</dd>
@@ -238,10 +286,19 @@
         </button>
 
         <div class="navegacao">
-          <button class="btn-secundario" type="button" data-acao="anterior">
+          <button
+            class="btn-secundario"
+            type="button"
+            data-acao="anterior"
+          >
             <span aria-hidden="true">←</span> Voltar
           </button>
-          <button class="btn-principal" type="button" data-acao="proxima">
+
+          <button
+            class="btn-principal"
+            type="button"
+            data-acao="proxima"
+          >
             Próximo <span aria-hidden="true">→</span>
           </button>
         </div>
@@ -268,21 +325,29 @@
           Bernardo está esperando seus melhores aliados.
         </p>
 
-        <div class="contador" aria-live="polite">
+        <div class="contador">
           <p>A missão começa em</p>
-          <div class="countdown" role="timer">
+
+          <div
+            class="countdown"
+            role="timer"
+            aria-label="Contagem regressiva para o aniversário"
+          >
             <div class="tempo">
               <strong id="dias">00</strong>
               <span>dias</span>
             </div>
+
             <div class="tempo">
               <strong id="horas">00</strong>
               <span>horas</span>
             </div>
+
             <div class="tempo">
               <strong id="minutos">00</strong>
               <span>min</span>
             </div>
+
             <div class="tempo">
               <strong id="segundos">00</strong>
               <span>seg</span>
@@ -327,6 +392,7 @@
         Bernardo Furtado
         <span aria-hidden="true">⚡</span>
       </strong>
+
       <span>4 anos • Uma aventura inesquecível</span>
     </footer>
 
@@ -344,3 +410,4 @@
 
 </body>
 </html>
+```
