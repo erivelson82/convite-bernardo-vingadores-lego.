@@ -1,200 +1,333 @@
 /* =====================================================
-   CONFIGURAÇÕES — EDITE AQUI
+   BERNARDO 4 ANOS · VINGADORES LEGO
+   Sistema de convite interativo — 4 etapas
 ===================================================== */
 
-// Data da festa (29/11/2026 às 12h no horário de Brasília)
-var DATA_FESTA = new Date("2026-11-29T12:00:00-03:00");
-
-// Número do WhatsApp que vai receber as confirmações.
-// Formato: código do país + DDD + número (ex.: "5511999999999").
-// Deixe vazio ("") para abrir a lista de contatos do WhatsApp.
-var WHATSAPP_NUMERO = "";
-
-// Link do Google Maps para o botão "Ver localização".
-// Cole aqui o link que você pegar no Google Maps.
-var LINK_LOCALIZACAO = "https://maps.google.com/?q=Minha+casa";
-
-// Mensagem que será enviada ao confirmar presença.
-var MENSAGEM_CONFIRMACAO =
-  "Olá! Confirmo minha presença no aniversário de 4 anos do Bernardo, dia 29/11/2026, às 12h. 🎉";
-
-/* =====================================================
-   INICIALIZAÇÃO
-===================================================== */
-document.addEventListener("DOMContentLoaded", function () {
+(() => {
   "use strict";
 
-  /* ---------- Elementos ---------- */
-  var abertura    = document.getElementById("abertura");
-  var convite     = document.getElementById("convite");
-  var btnEntrar   = document.getElementById("btnEntrar");
-  var etapas      = Array.prototype.slice.call(document.querySelectorAll(".etapa"));
-  var pontos      = Array.prototype.slice.call(document.querySelectorAll(".ponto"));
+  /* =====================================================
+     CONFIGURAÇÃO
+  ===================================================== */
 
-  var elDias      = document.getElementById("dias");
-  var elHoras     = document.getElementById("horas");
-  var elMinutos   = document.getElementById("minutos");
-  var elSegundos  = document.getElementById("segundos");
+  const CONFIG = Object.freeze({
+    dataFesta: "2026-12-12T12:00:00", // Alinhado com a data do HTML (12/12/2026)
+    whatsapp: "5511999998888",         // Substitua pelo número real com DDI + DDD + número (sem símbolos)
+    localizacao: "https://www.google.com/maps/search/?api=1&query=Minha+Casa",
+    urlConvite: window.location.href,
+  });
 
-  var etapaAtual  = 0;
-  var intervalo   = null;
+  const TOTAL_ETAPAS = 4;
+  const DURACAO_ABERTURA = 700;
+  const DURACAO_TOAST = 3200;
 
-  /* ---------- Navegação entre etapas ---------- */
-  function mostrarEtapa(indice) {
-    if (indice < 0 || indice >= etapas.length) return;
+  const MENSAGENS = Object.freeze({
+    confirmacao: {
+      texto:
+        "Olá! Quero confirmar minha presença na festa de 4 anos do Bernardo! 🦸⚡🎂",
+      semWhatsapp:
+        "A confirmação pelo WhatsApp será configurada em breve. 🚀",
+    },
+    compartilhar: {
+      titulo: "Bernardo 4 Anos · Vingadores LEGO",
+      texto:
+        "🦸⚡ VOCÊ FOI CONVOCADO! ⚡🦸\n\n" +
+        "Bernardo está completando 4 anos! 🎂\n\n" +
+        "📅 12 de Dezembro de 2026\n" +
+        "⏰ 12:00\n" +
+        "📍 Minha casa\n\n" +
+        "Venha participar dessa missão especial! 🚀",
+    },
+    feedback: {
+      copiado: "Convite copiado! 🚀",
+      erroCopia: "Não foi possível copiar. Tente novamente.",
+      semLocalizacao: "A localização ainda não foi configurada.",
+    },
+  });
 
-    etapaAtual = indice;
+  /* =====================================================
+     ESTADO
+  ===================================================== */
 
-    etapas.forEach(function (etapa, i) {
-      var ativa = i === etapaAtual;
-      etapa.classList.toggle("ativa", ativa);
-      etapa.hidden = !ativa;
+  const state = {
+    etapaAtual: 1,
+    intervalId: null,
+  };
+
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  /* =====================================================
+     HELPERS
+  ===================================================== */
+
+  const $ = (sel, ctx = document) => ctx.querySelector(sel);   const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+
+  /* =====================================================
+     TOAST
+  ===================================================== */
+
+  const toast = (() => {
+    let el = null;
+    let timeoutId = null;
+
+    const criar = () => {
+      el = document.createElement("div");
+      el.id = "toast";
+      el.className = "toast";
+      el.setAttribute("role", "status");
+      el.setAttribute("aria-live", "polite");
+      document.body.appendChild(el);
+      return el;
+    };
+
+    const mostrar = (mensagem) => {
+      if (!el) criar();
+
+      el.textContent = mensagem;
+      el.classList.add("toast--visivel");
+
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        el.classList.remove("toast--visivel");
+      }, DURACAO_TOAST);
+    };
+
+    return { mostrar };
+  })();
+
+  /* =====================================================
+     NAVEGAÇÃO ENTRE ETAPAS
+  ===================================================== */
+
+  const scrollParaTopo = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: reduceMotion ? "auto" : "smooth",
     });
+  };
 
-    pontos.forEach(function (ponto, i) {
-      var ativo = i === etapaAtual;
-      ponto.classList.toggle("ativo", ativo);
+  const atualizarProgresso = (etapa) => {
+    $$(".ponto").forEach((ponto) => {       const num = Number(ponto.dataset.etapa);       const ativo = num === etapa;        ponto.classList.toggle("ativo", ativo);        if (ativo) {         ponto.setAttribute("aria-current", "step");       } else {         ponto.removeAttribute("aria-current");       }     });   };    const mostrarEtapa = (numero) => {     if (numero < 1 \vert{}\vert{} numero > TOTAL_ETAPAS) return;      state.etapaAtual = numero;      $$
+(".etapa").forEach((el) => el.classList.remove("ativa"));
 
-      if (ativo) {
-        ponto.setAttribute("aria-current", "step");
-      } else {
-        ponto.removeAttribute("aria-current");
-      }
-    });
+    const etapa = $(`#etapa-${numero}`);
+    if (!etapa) return;
 
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
+    // Força reflow para reexecutar a animação
+    void etapa.offsetWidth;
+    etapa.classList.add("ativa");
 
-  /* ---------- Abrir convite ---------- */
-  if (btnEntrar) {
-    btnEntrar.addEventListener("click", function () {
-      abertura.hidden = true;
-      convite.hidden = false;
-      mostrarEtapa(0);
-      iniciarContagem();
-    });
-  }
+    atualizarProgresso(numero);
+    scrollParaTopo();
+  };
 
-  /* ---------- Confirmar presença (WhatsApp) ---------- */
-  function confirmarPresenca() {
-    var texto = encodeURIComponent(MENSAGEM_CONFIRMACAO);
-    var url = WHATSAPP_NUMERO
-      ? "https://wa.me/" + WHATSAPP_NUMERO + "?text=" + texto
-      : "https://wa.me/?text=" + texto;
-
-    var janela = window.open(url, "_blank", "noopener,noreferrer");
-    if (janela) janela.focus();
-  }
-
-  /* ---------- Compartilhar convite ---------- */
-  function copiarLink(url) {
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(url)
-        .then(function () {
-          alert("Link do convite copiado! Agora é só enviar para a família.");
-        })
-        .catch(function () {
-          prompt("Copie o link do convite:", url);
-        });
-    } else {
-      prompt("Copie o link do convite:", url);
+  const proximaEtapa = () => {
+    if (state.etapaAtual < TOTAL_ETAPAS) {
+      mostrarEtapa(state.etapaAtual + 1);
     }
-  }
+  };
 
-  function compartilharConvite() {
-    var url = window.location.href;
+  const etapaAnterior = () => {
+    if (state.etapaAtual > 1) {
+      mostrarEtapa(state.etapaAtual - 1);
+    }
+  };
 
-    if (navigator.share) {
-      navigator.share({
-        title: "Aniversário do Bernardo - 4 anos",
-        text: "Você está convidado para a aventura dos Vingadores LEGO!",
-        url: url
-      }).catch(function (erro) {
-        if (erro && erro.name === "AbortError") return;
-        copiarLink(url);
+  /* =====================================================
+     ABERTURA
+  ===================================================== */
+
+  const entrarNaMissao = () => {
+    const abertura = $("#abertura");
+    const convite = $("#convite");
+
+    if (!abertura || !convite) return;
+
+    abertura.classList.add("fechar");
+
+    setTimeout(() => {
+      convite.hidden = false;
+      convite.classList.add("mostrar");
+
+      mostrarEtapa(1);
+      scrollParaTopo();
+
+      setTimeout(() => {
+        abertura.setAttribute("aria-hidden", "true");
+      }, DURACAO_ABERTURA);
+    }, DURACAO_ABERTURA);
+  };
+
+  /* =====================================================
+     CONTAGEM REGRESSIVA
+  ===================================================== */
+
+  const pad2 = (n) => String(n).padStart(2, "0");
+
+  const atualizarContador = () => {
+    const alvo = new Date(CONFIG.dataFesta).getTime();
+    const agora = Date.now();
+    const diff = alvo - agora;
+
+    if (diff <= 0) {
+      ["dias", "horas", "minutos", "segundos"].forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = "00";
       });
       return;
     }
 
-    copiarLink(url);
-  }
+    const dias = Math.floor(diff / 86_400_000);
+    const horas = Math.floor((diff % 86_400_000) / 3_600_000);
+    const minutos = Math.floor((diff % 3_600_000) / 60_000);
+    const segundos = Math.floor((diff % 60_000) / 1000);
 
-  /* ---------- Abrir localização ---------- */
-  function abrirLocalizacao() {
-    window.open(LINK_LOCALIZACAO, "_blank", "noopener,noreferrer");
-  }
+    const valores = {
+      dias: pad2(dias),
+      horas: pad2(horas),
+      minutos: pad2(minutos),
+      segundos: pad2(segundos),
+    };
 
-  /* ---------- Ações dos botões ---------- */
-  document.querySelectorAll("[data-acao]").forEach(function (botao) {
-    botao.addEventListener("click", function () {
-      var acao = botao.dataset.acao;
-
-      switch (acao) {
-        case "proxima":
-          mostrarEtapa(etapaAtual + 1);
-          break;
-
-        case "anterior":
-          mostrarEtapa(etapaAtual - 1);
-          break;
-
-        case "confirmar":
-          confirmarPresenca();
-          break;
-
-        case "compartilhar":
-          compartilharConvite();
-          break;
-
-        case "localizacao":
-          abrirLocalizacao();
-          break;
-      }
+    Object.entries(valores).forEach(([id, valor]) => {
+      const el = document.getElementById(id);
+      if (el && el.textContent !== valor) el.textContent = valor;
     });
-  });
+  };
 
-  /* ---------- Contagem regressiva ---------- */
-  function doisDigitos(valor) {
-    return String(valor).padStart(2, "0");
-  }
+  const iniciarContador = () => {
+    atualizarContador();
+    if (state.intervalId) clearInterval(state.intervalId);
+    state.intervalId = setInterval(atualizarContador, 1000);
+  };
 
-  function atualizarContagem() {
-    var diferenca = DATA_FESTA.getTime() - Date.now();
+  /* =====================================================
+     CONFIRMAR PRESENÇA
+  ===================================================== */
 
-    if (diferenca <= 0) {
-      if (elDias)     elDias.textContent = "00";
-      if (elHoras)    elHoras.textContent = "00";
-      if (elMinutos)  elMinutos.textContent = "00";
-      if (elSegundos) elSegundos.textContent = "00";
+  const confirmarPresenca = () => {
+    const numero = CONFIG.whatsapp.trim();
 
-      if (intervalo) {
-        clearInterval(intervalo);
-        intervalo = null;
-      }
+    if (!numero) {
+      toast.mostrar(MENSAGENS.confirmacao.semWhatsapp);
       return;
     }
 
-    if (elDias) {
-      elDias.textContent = doisDigitos(Math.floor(diferenca / 86400000));
-    }
-    if (elHoras) {
-      elHoras.textContent = doisDigitos(Math.floor(diferenca / 3600000) % 24);
-    }
-    if (elMinutos) {
-      elMinutos.textContent = doisDigitos(Math.floor(diferenca / 60000) % 60);
-    }
-    if (elSegundos) {
-      elSegundos.textContent = doisDigitos(Math.floor(diferenca / 1000) % 60);
-    }
-  }
+    const url =
+      `https://wa.me/${numero}?text=` +
+      encodeURIComponent(MENSAGENS.confirmacao.texto);
 
-  function iniciarContagem() {
-    atualizarContagem();
-    if (!intervalo) {
-      intervalo = setInterval(atualizarContagem, 1000);
-    }
-  }
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
 
-  /* ---------- Estado inicial ---------- */
-  mostrarEtapa(0);
-});
+  /* =====================================================
+     COMPARTILHAR
+  ===================================================== */
+
+  const copiarTexto = async (texto) => {
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(texto);
+        toast.mostrar(MENSAGENS.feedback.copiado);
+        return;
+      }
+
+      const ta = document.createElement("textarea");
+      ta.value = texto;
+      ta.setAttribute("readonly", "");
+      ta.style.cssText = "position:fixed;left:-9999px;opacity:0;";
+
+      document.body.appendChild(ta);
+      ta.select();
+
+      const ok = document.execCommand("copy");
+      document.body.removeChild(ta);
+
+      toast.mostrar(
+        ok ? MENSAGENS.feedback.copiado : MENSAGENS.feedback.erroCopia
+      );
+    } catch {
+      toast.mostrar(MENSAGENS.feedback.erroCopia);
+    }
+  };
+
+  const compartilharConvite = async () => {
+    const payload = {
+      title: MENSAGENS.compartilhar.titulo,
+      text: MENSAGENS.compartilhar.texto,
+      url: CONFIG.urlConvite,
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(payload);
+        return;
+      } catch (err) {
+        if (err?.name === "AbortError") return;
+      }
+    }
+
+    await copiarTexto(
+      `${MENSAGENS.compartilhar.texto}\n\n${CONFIG.urlConvite}`
+    );
+  };
+
+  /* =====================================================
+     LOCALIZAÇÃO
+  ===================================================== */
+
+  const abrirLocalizacao = () => {
+    if (!CONFIG.localizacao) {
+      toast.mostrar(MENSAGENS.feedback.semLocalizacao);
+      return;
+    }
+
+    window.open(CONFIG.localizacao, "_blank", "noopener,noreferrer");
+  };
+
+  /* =====================================================
+     DELEGAÇÃO DE EVENTOS
+  ===================================================== */
+
+  const ACOES = {
+    entrar: entrarNaMissao,
+    proxima: proximaEtapa,
+    anterior: etapaAnterior,
+    confirmar: confirmarPresenca,
+    compartilhar: compartilharConvite,
+    localizacao: abrirLocalizacao,
+  };
+
+  const registrarAcoes = () => {
+    document.addEventListener("click", (event) => {
+      const alvo = event.target.closest("[data-acao]");
+      if (!alvo) return;
+
+      const acao = alvo.dataset.acao;
+      const handler = ACOES[acao];
+
+      if (handler) {
+        event.preventDefault();
+        handler();
+      }
+    });
+  };
+
+  /* =====================================================
+     INICIALIZAÇÃO
+  ===================================================== */
+
+  const init = () => {
+    registrarAcoes();
+    iniciarContador();
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init, { once: true });
+  } else {
+    init();
+  }
+})();
