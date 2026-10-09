@@ -1,5 +1,5 @@
 const CONFIG = Object.freeze({
-  dataFesta: "2026-12-12T12:00:00",   // ← data da festa
+  dataFesta: "2026-11-29T12:00:00",   // ← data da festa
   whatsapp: "5511999998888",          // ← seu número com DDI+DDD
   localizacao: "https://maps.google.com/?q=Seu+Endereco",  // ← link do Maps
   ...
@@ -17,7 +17,7 @@ const CONFIG = Object.freeze({
   ===================================================== */
 
   const CONFIG = Object.freeze({
-    dataFesta: "2026-12-12T12:00:00",
+    dataFesta: "2026-11-29T12:00:00",
     whatsapp: "", // Ex.: "5511999998888" (DDI+DDD+número, sem símbolos)
     localizacao:
       "https://www.google.com/maps/search/?api=1&query=Minha+Casa",
@@ -40,7 +40,7 @@ const CONFIG = Object.freeze({
       texto:
         "🦸⚡ VOCÊ FOI CONVOCADO! ⚡🦸\n\n" +
         "Bernardo está completando 4 anos! 🎂\n\n" +
-        "📅 12 de dezembro de 2026\n" +
+        "📅 12 de Novembro de 2026\n" +
         "⏰ 12:00\n" +
         "📍 Minha casa\n\n" +
         "Venha participar dessa missão especial! 🚀",
