@@ -1,696 +1,200 @@
 /* =====================================================
-   RESET / BASE
+   CONFIGURAÇÕES — EDITE AQUI
 ===================================================== */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
 
-:root {
-  --bg: #0b0d17;
-  --bg-2: #121729;
-  --card: rgba(255, 255, 255, 0.04);
-  --card-hover: rgba(255, 255, 255, 0.08);
-  --borda: rgba(255, 255, 255, 0.12);
-  --texto: #f1f4fb;
-  --texto-suave: #9aa5c0;
-  --amarelo: #ffcc00;
-  --amarelo-escuro: #c99a00;
-  --vermelho: #e62429;
-  --vermelho-escuro: #a3161a;
-  --azul: #2f7de1;
-  --verde: #25d366;
-  --verde-escuro: #128c42;
-  --sombra: 0 20px 60px rgba(0, 0, 0, 0.6);
+// Data da festa (29/11/2026 às 12h no horário de Brasília)
+var DATA_FESTA = new Date("2026-11-29T12:00:00-03:00");
 
-  --font-display: "Bebas Neue", "Impact", sans-serif;
-  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
+// Número do WhatsApp que vai receber as confirmações.
+// Formato: código do país + DDD + número (ex.: "5511999999999").
+// Deixe vazio ("") para abrir a lista de contatos do WhatsApp.
+var WHATSAPP_NUMERO = "";
 
-[hidden] {
-  display: none !important;
-}
+// Link do Google Maps para o botão "Ver localização".
+// Cole aqui o link que você pegar no Google Maps.
+var LINK_LOCALIZACAO = "https://maps.google.com/?q=Minha+casa";
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  min-height: 100vh;
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--texto);
-  background-color: var(--bg);
-  background-image:
-    radial-gradient(circle at 20% 0%, rgba(230, 36, 41, 0.18), transparent 45%),
-    radial-gradient(circle at 90% 100%, rgba(47, 125, 225, 0.15), transparent 50%);
-  background-attachment: fixed;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -webkit-tap-highlight-color: transparent;
-}
-
-h1, h2, h3 {
-  line-height: 1.15;
-  font-weight: 900;
-}
-
-strong {
-  color: var(--amarelo);
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
+// Mensagem que será enviada ao confirmar presença.
+var MENSAGEM_CONFIRMACAO =
+  "Olá! Confirmo minha presença no aniversário de 4 anos do Bernardo, dia 29/11/2026, às 12h. 🎉";
 
 /* =====================================================
-   BOTÕES
+   INICIALIZAÇÃO
 ===================================================== */
-button {
-  font-family: inherit;
-  font-weight: 800;
-  font-size: 1rem;
-  letter-spacing: 0.3px;
-  cursor: pointer;
-  border: none;
-  border-radius: 999px;
-  padding: 16px 32px;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
-}
-
-button:focus-visible {
-  outline: 3px solid var(--amarelo);
-  outline-offset: 4px;
-}
-
-.btn-principal {
-  background: linear-gradient(135deg, var(--amarelo), #ffdd55);
-  color: #0b0d17;
-  box-shadow: 0 6px 0 var(--amarelo-escuro), 0 12px 30px rgba(255, 204, 0, 0.25);
-}
-
-.btn-principal:hover {
-  filter: brightness(1.08);
-  transform: translateY(-2px);
-}
-
-.btn-principal:active {
-  transform: translateY(4px);
-  box-shadow: 0 2px 0 var(--amarelo-escuro);
-}
-
-.btn-secundario {
-  background: transparent;
-  color: var(--texto-suave);
-  border: 2px solid var(--borda);
-  padding: 14px 26px;
-}
-
-.btn-secundario:hover {
-  color: var(--texto);
-  border-color: rgba(255, 255, 255, 0.3);
-  background: var(--card-hover);
-}
-
-.btn-localizacao {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: transparent;
-  color: var(--texto);
-  border: 2px solid var(--azul);
-  padding: 12px 24px;
-  font-size: 0.95rem;
-  margin: 8px auto 0;
-}
-
-.btn-localizacao:hover {
-  background: rgba(47, 125, 225, 0.15);
-}
-
-.btn-confirmar {
-  background: linear-gradient(135deg, var(--verde), #4be288);
-  color: #04240f;
-  box-shadow: 0 6px 0 var(--verde-escuro), 0 12px 30px rgba(37, 211, 102, 0.3);
-}
-
-.btn-confirmar:active {
-  box-shadow: 0 2px 0 var(--verde-escuro);
-}
-
-.btn-compartilhar {
-  background: linear-gradient(135deg, var(--azul), #5aa3ff);
-  color: #fff;
-  box-shadow: 0 6px 0 #1b4f96, 0 12px 30px rgba(47, 125, 225, 0.3);
-}
-
-.btn-compartilhar:active {
-  box-shadow: 0 2px 0 #1b4f96;
-}
-
-/* =====================================================
-   TELA 1 — ABERTURA
-===================================================== */
-.abertura {
-  min-height: 100vh;
-  min-height: 100dvh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 32px 20px;
-  position: relative;
-  overflow: hidden;
-}
-
-.abertura::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(230, 36, 41, 0.25), transparent 60%);
-  pointer-events: none;
-}
-
-.abertura-conteudo {
-  position: relative;
-  width: min(560px, 100%);
-  padding: 48px 32px;
-  text-align: center;
-  background: linear-gradient(160deg, var(--bg-2), var(--bg));
-  border: 3px solid var(--amarelo);
-  border-radius: 28px;
-  box-shadow:
-    0 0 0 8px rgba(230, 36, 41, 0.9),
-    0 0 0 16px rgba(230, 36, 41, 0.25),
-    var(--sombra);
-  animation: pulseIn 0.6s ease;
-}
-
-@keyframes pulseIn {
-  from { opacity: 0; transform: scale(0.9); }
-  to   { opacity: 1; transform: scale(1); }
-}
-
-.abertura-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 96px;
-  height: 96px;
-  margin-bottom: 20px;
-  border-radius: 50%;
-  background: var(--vermelho);
-  color: var(--amarelo);
-  box-shadow: 0 0 40px rgba(230, 36, 41, 0.7);
-  animation: flutuar 2.5s ease-in-out infinite;
-}
-
-@keyframes flutuar {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-8px); }
-}
-
-.abertura-alerta {
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--amarelo);
-  margin-bottom: 12px;
-}
-
-.abertura-titulo {
-  font-family: var(--font-display);
-  font-size: clamp(2.8rem, 12vw, 5rem);
-  letter-spacing: 2px;
-  color: #fff;
-  text-transform: uppercase;
-  text-shadow: 4px 4px 0 var(--vermelho);
-  margin-bottom: 20px;
-}
-
-.abertura-texto {
-  font-size: 1.05rem;
-  color: var(--texto);
-  margin-bottom: 6px;
-}
-
-.abertura-subtexto {
-  font-size: 0.95rem;
-  color: var(--texto-suave);
-  margin-bottom: 32px;
-}
-
-/* =====================================================
-   CONVITE
-===================================================== */
-.convite {
-  width: min(720px, 100%);
-  margin: 0 auto;
-  padding: 32px 20px 48px;
-  animation: aparecer 0.5s ease;
-}
-
-@keyframes aparecer {
-  from { opacity: 0; transform: translateY(15px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* Progresso */
-.progresso {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 28px;
-}
-
-.progresso ol {
-  display: flex;
-  gap: 12px;
-  list-style: none;
-}
-
-.ponto {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--card-hover);
-  border: 2px solid var(--borda);
-  transition: all 0.3s ease;
-  cursor: default;
-}
-
-.ponto.ativo {
-  background: var(--amarelo);
-  border-color: var(--amarelo);
-  transform: scale(1.3);
-  box-shadow: 0 0 16px rgba(255, 204, 0, 0.9);
-}
-
-/* Etapas */
-.etapa {
-  background: linear-gradient(160deg, var(--bg-2), rgba(11, 13, 23, 0.9));
-  border: 2px solid var(--borda);
-  border-radius: 24px;
-  padding: 40px 28px;
-  box-shadow: var(--sombra);
-  position: relative;
-  overflow: hidden;
-}
-
-.etapa::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--vermelho), var(--amarelo), var(--azul));
-}
-
-.etapa:not(.ativa) {
-  display: none;
-}
-
-.etapa.ativa {
-  display: block;
-  animation: aparecer 0.4s ease;
-}
-
-.etapa-conteudo {
-  text-align: center;
-}
-
-/* Hero (Etapa 1) */
-.logo {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  letter-spacing: 6px;
-  color: var(--vermelho);
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-
-.mini-titulo {
-  font-size: 0.75rem;
-  font-weight: 800;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--texto-suave);
-  margin-bottom: 20px;
-}
-
-.raio {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 120px;
-  height: 120px;
-  margin: 8px auto 24px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 204, 0, 0.2), transparent 70%);
-  color: var(--amarelo);
-  animation: pulsar 2s ease-in-out infinite;
-}
-
-@keyframes pulsar {
-  0%, 100% { transform: scale(1); }
-  50%      { transform: scale(1.08); }
-}
-
-.apresentacao {
-  font-size: 1rem;
-  color: var(--texto-suave);
-  margin-bottom: 4px;
-}
-
-.nome {
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 15vw, 6rem);
-  letter-spacing: 3px;
-  color: #fff;
-  text-transform: uppercase;
-  text-shadow: 5px 5px 0 var(--vermelho);
-  margin-bottom: 12px;
-}
-
-.idade {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 90px;
-  height: 90px;
-  margin: 0 auto 8px;
-  font-family: var(--font-display);
-  font-size: 3.5rem;
-  color: var(--amarelo);
-  background: rgba(255, 204, 0, 0.08);
-  border: 3px solid var(--amarelo);
-  border-radius: 50%;
-  box-shadow: 0 0 30px rgba(255, 204, 0, 0.4);
-}
-
-.etapa .hero h2 {
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--amarelo);
-  margin-bottom: 24px;
-}
-
-.texto-destaque {
-  font-size: 1.05rem;
-  color: var(--texto);
-  margin-bottom: 32px;
-}
-
-/* Cards de missão (Etapa 2) */
-.icone-grande {
-  font-size: 4rem;
-  line-height: 1;
-  margin-bottom: 12px;
-}
-
-.etapa h2 {
-  font-family: var(--font-display);
-  font-size: clamp(1.8rem, 8vw, 2.6rem);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--amarelo);
-  margin-bottom: 20px;
-}
-
-.texto {
-  font-size: 1.05rem;
-  color: var(--texto);
-  margin-bottom: 24px;
-}
-
-.cards-missao {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 14px;
-  list-style: none;
-  margin-bottom: 24px;
-}
-
-.card-missao {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  padding: 20px 14px;
-  background: var(--card);
-  border: 2px solid var(--borda);
-  border-radius: 16px;
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-}
-
-.card-missao:hover {
-  transform: translateY(-4px);
-  border-color: var(--amarelo);
-  background: var(--card-hover);
-}
-
-.card-missao > span {
-  font-size: 2rem;
-}
-
-.card-missao strong {
-  font-size: 1rem;
-  color: var(--texto);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.card-missao small {
-  font-size: 0.8rem;
-  color: var(--texto-suave);
-  text-align: center;
-  line-height: 1.4;
-}
-
-.alerta {
-  display: inline-block;
-  padding: 12px 22px;
-  background: rgba(230, 36, 41, 0.12);
-  border: 2px dashed rgba(230, 36, 41, 0.5);
-  border-radius: 12px;
-  font-weight: 700;
-  color: #ff8a8f;
-  margin-bottom: 28px;
-}
-
-/* Informações (Etapa 3) */
-.informacoes {
-  display: grid;
-  gap: 12px;
-  margin: 24px 0;
-  text-align: left;
-}
-
-.informacao {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 16px 20px;
-  background: var(--card);
-  border-left: 4px solid var(--amarelo);
-  border-radius: 12px;
-  transition: background 0.2s ease;
-}
-
-.informacao:hover {
-  background: var(--card-hover);
-}
-
-.informacao dt {
-  font-size: 0.85rem;
-  font-weight: 800;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--texto-suave);
-}
-
-.informacao dd {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--texto);
-  text-align: right;
-}
-
-/* Contador (Etapa 4) */
-.contador {
-  margin: 24px 0 32px;
-}
-
-.contador > p {
-  font-size: 0.85rem;
-  font-weight: 800;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--texto-suave);
-  margin-bottom: 16px;
-}
-
-.countdown {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-}
-
-.tempo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  padding: 16px 6px;
-  background: linear-gradient(160deg, rgba(255, 204, 0, 0.1), rgba(255, 204, 0, 0.02));
-  border: 2px solid rgba(255, 204, 0, 0.35);
-  border-radius: 14px;
-}
-
-.tempo strong {
-  font-family: var(--font-display);
-  font-size: clamp(1.6rem, 7vw, 2.4rem);
-  color: var(--amarelo);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 1px;
-}
-
-.tempo span {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--texto-suave);
-}
-
-/* Confirmação (Etapa 4) */
-.confirmacao {
-  display: flex;
-  flex-direction: column;
-}
-
-.confirmacao .btn-principal,
-.confirmacao .btn-compartilhar,
-.confirmacao .btn-secundario {
-  margin-top: 12px;
-}
-
-.confirmacao .btn-principal:first-of-type {
-  margin-top: 0;
-}
-
-/* Navegação */
-.navegacao {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 28px;
-}
-
-/* Rodapé */
-footer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  margin-top: 32px;
-  text-align: center;
-}
-
-footer strong {
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  letter-spacing: 3px;
-  color: var(--amarelo);
-  text-transform: uppercase;
-}
-
-footer span {
-  font-size: 0.8rem;
-  color: var(--texto-suave);
-  letter-spacing: 1px;
-}
-
-/* Noscript */
-.noscript-aviso {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  text-align: center;
-  background: var(--bg);
-  color: var(--texto);
-  font-size: 1.1rem;
-  z-index: 9999;
-}
-
-/* =====================================================
-   RESPONSIVO
-===================================================== */
-@media (max-width: 480px) {
-  .countdown {
-    grid-template-columns: repeat(2, 1fr);
+document.addEventListener("DOMContentLoaded", function () {
+  "use strict";
+
+  /* ---------- Elementos ---------- */
+  var abertura    = document.getElementById("abertura");
+  var convite     = document.getElementById("convite");
+  var btnEntrar   = document.getElementById("btnEntrar");
+  var etapas      = Array.prototype.slice.call(document.querySelectorAll(".etapa"));
+  var pontos      = Array.prototype.slice.call(document.querySelectorAll(".ponto"));
+
+  var elDias      = document.getElementById("dias");
+  var elHoras     = document.getElementById("horas");
+  var elMinutos   = document.getElementById("minutos");
+  var elSegundos  = document.getElementById("segundos");
+
+  var etapaAtual  = 0;
+  var intervalo   = null;
+
+  /* ---------- Navegação entre etapas ---------- */
+  function mostrarEtapa(indice) {
+    if (indice < 0 || indice >= etapas.length) return;
+
+    etapaAtual = indice;
+
+    etapas.forEach(function (etapa, i) {
+      var ativa = i === etapaAtual;
+      etapa.classList.toggle("ativa", ativa);
+      etapa.hidden = !ativa;
+    });
+
+    pontos.forEach(function (ponto, i) {
+      var ativo = i === etapaAtual;
+      ponto.classList.toggle("ativo", ativo);
+
+      if (ativo) {
+        ponto.setAttribute("aria-current", "step");
+      } else {
+        ponto.removeAttribute("aria-current");
+      }
+    });
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  .etapa {
-    padding: 32px 20px;
+  /* ---------- Abrir convite ---------- */
+  if (btnEntrar) {
+    btnEntrar.addEventListener("click", function () {
+      abertura.hidden = true;
+      convite.hidden = false;
+      mostrarEtapa(0);
+      iniciarContagem();
+    });
   }
 
-  .abertura-conteudo {
-    padding: 40px 24px;
+  /* ---------- Confirmar presença (WhatsApp) ---------- */
+  function confirmarPresenca() {
+    var texto = encodeURIComponent(MENSAGEM_CONFIRMACAO);
+    var url = WHATSAPP_NUMERO
+      ? "https://wa.me/" + WHATSAPP_NUMERO + "?text=" + texto
+      : "https://wa.me/?text=" + texto;
+
+    var janela = window.open(url, "_blank", "noopener,noreferrer");
+    if (janela) janela.focus();
   }
 
-  .informacao {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
+  /* ---------- Compartilhar convite ---------- */
+  function copiarLink(url) {
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(url)
+        .then(function () {
+          alert("Link do convite copiado! Agora é só enviar para a família.");
+        })
+        .catch(function () {
+          prompt("Copie o link do convite:", url);
+        });
+    } else {
+      prompt("Copie o link do convite:", url);
+    }
   }
 
-  .informacao dd {
-    text-align: left;
+  function compartilharConvite() {
+    var url = window.location.href;
+
+    if (navigator.share) {
+      navigator.share({
+        title: "Aniversário do Bernardo - 4 anos",
+        text: "Você está convidado para a aventura dos Vingadores LEGO!",
+        url: url
+      }).catch(function (erro) {
+        if (erro && erro.name === "AbortError") return;
+        copiarLink(url);
+      });
+      return;
+    }
+
+    copiarLink(url);
   }
 
-  .navegacao {
-    flex-direction: column-reverse;
+  /* ---------- Abrir localização ---------- */
+  function abrirLocalizacao() {
+    window.open(LINK_LOCALIZACAO, "_blank", "noopener,noreferrer");
   }
 
-  .navegacao button {
-    width: 100%;
-  }
-}
+  /* ---------- Ações dos botões ---------- */
+  document.querySelectorAll("[data-acao]").forEach(function (botao) {
+    botao.addEventListener("click", function () {
+      var acao = botao.dataset.acao;
 
-/* =====================================================
-   ACESSIBILIDADE — MOVIMENTO REDUZIDO
-===================================================== */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+      switch (acao) {
+        case "proxima":
+          mostrarEtapa(etapaAtual + 1);
+          break;
+
+        case "anterior":
+          mostrarEtapa(etapaAtual - 1);
+          break;
+
+        case "confirmar":
+          confirmarPresenca();
+          break;
+
+        case "compartilhar":
+          compartilharConvite();
+          break;
+
+        case "localizacao":
+          abrirLocalizacao();
+          break;
+      }
+    });
+  });
+
+  /* ---------- Contagem regressiva ---------- */
+  function doisDigitos(valor) {
+    return String(valor).padStart(2, "0");
   }
 
-  html {
-    scroll-behavior: auto;
+  function atualizarContagem() {
+    var diferenca = DATA_FESTA.getTime() - Date.now();
+
+    if (diferenca <= 0) {
+      if (elDias)     elDias.textContent = "00";
+      if (elHoras)    elHoras.textContent = "00";
+      if (elMinutos)  elMinutos.textContent = "00";
+      if (elSegundos) elSegundos.textContent = "00";
+
+      if (intervalo) {
+        clearInterval(intervalo);
+        intervalo = null;
+      }
+      return;
+    }
+
+    if (elDias) {
+      elDias.textContent = doisDigitos(Math.floor(diferenca / 86400000));
+    }
+    if (elHoras) {
+      elHoras.textContent = doisDigitos(Math.floor(diferenca / 3600000) % 24);
+    }
+    if (elMinutos) {
+      elMinutos.textContent = doisDigitos(Math.floor(diferenca / 60000) % 60);
+    }
+    if (elSegundos) {
+      elSegundos.textContent = doisDigitos(Math.floor(diferenca / 1000) % 60);
+    }
   }
-}
+
+  function iniciarContagem() {
+    atualizarContagem();
+    if (!intervalo) {
+      intervalo = setInterval(atualizarContagem, 1000);
+    }
+  }
+
+  /* ---------- Estado inicial ---------- */
+  mostrarEtapa(0);
+});
