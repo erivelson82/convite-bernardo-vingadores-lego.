@@ -1,346 +1,316 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0b0d17">
-
-  <!-- SEO -->
-  <title>Bernardo 4 Anos | Missão Vingadores LEGO</title>
-  <meta
-    name="description"
-    content="Você foi convocado para a missão mais especial do ano: os 4 anos do Bernardo. Confirme sua presença!"
-  >
-  <meta name="robots" content="noindex, nofollow">
-
-  <!-- Open Graph (WhatsApp, Facebook) -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="⚡ Bernardo 4 Anos | Missão Vingadores LEGO">
-  <meta
-    property="og:description"
-    content="Você foi convocado para uma missão especial. Confirme sua presença!"
-  >
-  <meta property="og:image" content="assets/preview.jpg">
-  <meta property="og:locale" content="pt_BR">
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="⚡ Bernardo 4 Anos | Missão Vingadores LEGO">
-  <meta name="twitter:description" content="Você foi convocado para uma missão especial.">
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-
-  <!-- Fontes -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800;900&display=swap"
-    rel="stylesheet"
-  >
-
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b0d17">
+<!-- SEO -->
+<title>Bernardo 4 Anos | Missão Vingadores LEGO</title>
+<meta
+name="description"
+content="Você foi convocado para a missão mais especial do ano: os 4 anos do Bernardo. Confirme sua presença!"
+>
+<meta name="robots" content="noindex, nofollow">
+<!-- Open Graph (WhatsApp, Facebook) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="⚡ Bernardo 4 Anos | Missão Vingadores LEGO">
+<meta
+property="og:description"
+content="Você foi convocado para uma missão especial. Confirme sua presença!"
+>
+<meta property="og:image" content="assets/preview.jpg">
+<meta property="og:locale" content="pt_BR">
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="⚡ Bernardo 4 Anos | Missão Vingadores LEGO">
+<meta name="twitter:description" content="Você foi convocado para uma missão especial.">
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<!-- Fontes -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800;900&display=swap"
+rel="stylesheet"
+>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+<!-- =====================================================
+TELA 1 — ABERTURA
+===================================================== -->
+<section class="abertura" id="abertura" aria-labelledby="abertura-titulo">
+<div class="abertura-conteudo">
+  <div class="abertura-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="64" height="64">
+      <path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/>
+    </svg>
+  </div>
 
-  <!-- =====================================================
-       TELA 1 — ABERTURA
-  ===================================================== -->
-  <section class="abertura" id="abertura" aria-labelledby="abertura-titulo">
-    <div class="abertura-conteudo">
+  <p class="abertura-alerta">Atenção, herói</p>
 
-      <div class="abertura-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="64" height="64">
-          <path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/>
-        </svg>
-      </div>
+  <h1 class="abertura-titulo" id="abertura-titulo">
+    Você foi<br>convocado
+  </h1>
 
-      <p class="abertura-alerta">Atenção, herói</p>
+  <p class="abertura-texto">
+    Uma missão especial está prestes a começar.
+  </p>
+  <p class="abertura-subtexto">
+    Prepare-se para uma aventura inesquecível.
+  </p>
 
-      <h1 class="abertura-titulo" id="abertura-titulo">
-        Você foi<br>convocado
-      </h1>
+  <button
+    class="btn-principal"
+    id="btnEntrar"
+    type="button"
+    data-acao="entrar"
+  >
+    <span aria-hidden="true">🚀</span> Entrar na missão
+  </button>
+</div>
+</section>
 
-      <p class="abertura-texto">
-        Uma missão especial está prestes a começar.
-      </p>
-      <p class="abertura-subtexto">
-        Prepare-se para uma aventura inesquecível.
-      </p>
+<!-- =====================================================
+CONVITE — 4 ETAPAS
+===================================================== -->
+<main class="convite" id="convite" hidden>
+<!-- Indicador de progresso -->
+<nav class="progresso" aria-label="Progresso do convite">
+  <ol>
+    <li class="ponto ativo" data-etapa="1" aria-current="step">
+      <span class="sr-only">Etapa 1</span>
+    </li>
+    <li class="ponto" data-etapa="2">
+      <span class="sr-only">Etapa 2</span>
+    </li>
+    <li class="ponto" data-etapa="3">
+      <span class="sr-only">Etapa 3</span>
+    </li>
+    <li class="ponto" data-etapa="4">
+      <span class="sr-only">Etapa 4</span>
+    </li>
+  </ol>
+</nav>
 
-      <button
-        class="btn-principal"
-        id="btnEntrar"
-        type="button"
-        data-acao="entrar"
-      >
-        <span aria-hidden="true">🚀</span> Entrar na missão
-      </button>
+<!-- ETAPA 1 — BERNARDO -->
+<section
+  class="etapa ativa"
+  id="etapa-1"
+  data-etapa="1"
+  aria-labelledby="etapa1-titulo"
+>
+  <div class="etapa-conteudo hero">
+    <p class="logo">Vingadores</p>
+    <p class="mini-titulo">Uma missão especial</p>
 
+    <div class="raio" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="72" height="72">
+        <path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/>
+      </svg>
     </div>
-  </section>
 
+    <p class="apresentacao">O herói da vez é</p>
+    <h1 class="nome" id="etapa1-titulo">Bernardo</h1>
 
-  <!-- =====================================================
-       CONVITE — 4 ETAPAS
-  ===================================================== -->
-  <main class="convite" id="convite" hidden>
+    <div class="idade" aria-label="4 anos">4</div>
+    <h2>anos</h2>
 
-    <!-- Indicador de progresso -->
-    <nav class="progresso" aria-label="Progresso do convite">
-      <ol>
-        <li class="ponto ativo" data-etapa="1" aria-current="step">
-          <span class="sr-only">Etapa 1</span>
-        </li>
-        <li class="ponto" data-etapa="2">
-          <span class="sr-only">Etapa 2</span>
-        </li>
-        <li class="ponto" data-etapa="3">
-          <span class="sr-only">Etapa 3</span>
-        </li>
-        <li class="ponto" data-etapa="4">
-          <span class="sr-only">Etapa 4</span>
-        </li>
-      </ol>
-    </nav>
-
-
-    <!-- ETAPA 1 — BERNARDO -->
-    <section
-      class="etapa ativa"
-      id="etapa-1"
-      data-etapa="1"
-      aria-labelledby="etapa1-titulo"
-    >
-      <div class="etapa-conteudo hero">
-
-        <p class="logo">Vingadores</p>
-        <p class="mini-titulo">Uma missão especial</p>
-
-        <div class="raio" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="72" height="72">
-            <path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/>
-          </svg>
-        </div>
-
-        <p class="apresentacao">O herói da vez é</p>
-
-        <h1 class="nome" id="etapa1-titulo">Bernardo</h1>
-
-        <div class="idade" aria-label="4 anos">4</div>
-        <h2>anos</h2>
-
-        <p class="texto-destaque">
-          Uma aventura incrível está prestes a começar.
-        </p>
-
-        <button class="btn-principal" type="button" data-acao="proxima">
-          Próximo <span aria-hidden="true">→</span>
-        </button>
-
-      </div>
-    </section>
-
-
-    <!-- ETAPA 2 — MISSÃO -->
-    <section
-      class="etapa"
-      id="etapa-2"
-      data-etapa="2"
-      aria-labelledby="etapa2-titulo"
-    >
-      <div class="etapa-conteudo">
-
-        <div class="icone-grande" aria-hidden="true">🦸</div>
-        <p class="mini-titulo">Arquivo da S.H.I.E.L.D.</p>
-
-        <h2 id="etapa2-titulo">Sua missão</h2>
-
-        <p class="texto">
-          O agente Bernardo está completando <strong>4 anos</strong>
-          e precisa dos seus melhores aliados.
-        </p>
-
-        <ul class="cards-missao" role="list">
-          <li class="card-missao">
-            <span aria-hidden="true">🛡️</span>
-            <strong>Coragem</strong>
-            <small>Para encarar grandes aventuras.</small>
-          </li>
-          <li class="card-missao">
-            <span aria-hidden="true">⚡</span>
-            <strong>Energia</strong>
-            <small>Para brincar e se divertir.</small>
-          </li>
-          <li class="card-missao">
-            <span aria-hidden="true">🤝</span>
-            <strong>Amizade</strong>
-            <small>Para tornar o dia inesquecível.</small>
-          </li>
-        </ul>
-
-        <p class="alerta" role="note">
-          <span aria-hidden="true">⚠️</span>
-          Sua presença é muito importante!
-        </p>
-
-        <div class="navegacao">
-          <button class="btn-secundario" type="button" data-acao="anterior">
-            <span aria-hidden="true">←</span> Voltar
-          </button>
-          <button class="btn-principal" type="button" data-acao="proxima">
-            Próximo <span aria-hidden="true">→</span>
-          </button>
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- ETAPA 3 — DATA E LOCAL -->
-    <section
-      class="etapa"
-      id="etapa-3"
-      data-etapa="3"
-      aria-labelledby="etapa3-titulo"
-    >
-      <div class="etapa-conteudo">
-
-        <div class="icone-grande" aria-hidden="true">📋</div>
-        <p class="mini-titulo">Dados da missão</p>
-
-        <h2 id="etapa3-titulo">Quando e onde?</h2>
-
-        <dl class="informacoes">
-          <div class="informacao">
-            <dt><span aria-hidden="true">📅</span> Data</dt>
-            <dd><time datetime="2026-11-29">29 de novembro de 2026</time></dd>
-          </div>
-          <div class="informacao">
-            <dt><span aria-hidden="true">⏰</span> Horário</dt>
-            <dd><time datetime="12:00">12h00</time></dd>
-          </div>
-          <div class="informacao">
-            <dt><span aria-hidden="true">📍</span> Local</dt>
-            <dd>Minha casa</dd>
-          </div>
-        </dl>
-
-        <button
-          class="btn-localizacao"
-          id="btnLocalizacao"
-          type="button"
-          data-acao="localizacao"
-        >
-          <span aria-hidden="true">📍</span> Ver localização
-        </button>
-
-        <div class="navegacao">
-          <button class="btn-secundario" type="button" data-acao="anterior">
-            <span aria-hidden="true">←</span> Voltar
-          </button>
-          <button class="btn-principal" type="button" data-acao="proxima">
-            Próximo <span aria-hidden="true">→</span>
-          </button>
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- ETAPA 4 — CONFIRMAÇÃO -->
-    <section
-      class="etapa"
-      id="etapa-4"
-      data-etapa="4"
-      aria-labelledby="etapa4-titulo"
-    >
-      <div class="etapa-conteudo confirmacao" id="confirmacao">
-
-        <div class="icone-grande" aria-hidden="true">🎉</div>
-        <p class="mini-titulo">Última etapa</p>
-
-        <h2 id="etapa4-titulo">Você aceita a missão?</h2>
-
-        <p class="texto">
-          Bernardo está esperando seus melhores aliados.
-        </p>
-
-        <div class="contador" aria-live="polite">
-          <p>A missão começa em</p>
-          <div class="countdown" role="timer">
-            <div class="tempo">
-              <strong id="dias">00</strong>
-              <span>dias</span>
-            </div>
-            <div class="tempo">
-              <strong id="horas">00</strong>
-              <span>horas</span>
-            </div>
-            <div class="tempo">
-              <strong id="minutos">00</strong>
-              <span>min</span>
-            </div>
-            <div class="tempo">
-              <strong id="segundos">00</strong>
-              <span>seg</span>
-            </div>
-          </div>
-        </div>
-
-        <button
-          class="btn-principal btn-confirmar"
-          id="btnConfirmarFinal"
-          type="button"
-          data-acao="confirmar"
-        >
-          <span aria-hidden="true">✅</span> Confirmar presença
-        </button>
-
-        <button
-          class="btn-compartilhar"
-          id="btnCompartilhar"
-          type="button"
-          data-acao="compartilhar"
-        >
-          <span aria-hidden="true">📲</span> Compartilhar convite
-        </button>
-
-        <button
-          class="btn-secundario voltar-final"
-          type="button"
-          data-acao="anterior"
-        >
-          <span aria-hidden="true">←</span> Voltar
-        </button>
-
-      </div>
-    </section>
-
-
-    <!-- RODAPÉ -->
-    <footer>
-      <strong>
-        <span aria-hidden="true">⚡</span>
-        Bernardo Furtado
-        <span aria-hidden="true">⚡</span>
-      </strong>
-      <span>4 anos • Uma aventura inesquecível</span>
-    </footer>
-
-  </main>
-
-
-  <noscript>
-    <p class="noscript-aviso">
-      Este convite precisa de JavaScript para funcionar.
-      Entre em contato diretamente com a família do Bernardo.
+    <p class="texto-destaque">
+      Uma aventura incrível está prestes a começar.
     </p>
-  </noscript>
 
-  <script src="script.js" defer></script>
+    <button class="btn-principal" type="button" data-acao="proxima">
+      Próximo <span aria-hidden="true">→</span>
+    </button>
+  </div>
+</section>
 
+<!-- ETAPA 2 — MISSÃO -->
+<section
+  class="etapa"
+  id="etapa-2"
+  data-etapa="2"
+  aria-labelledby="etapa2-titulo"
+>
+  <div class="etapa-conteudo">
+    <div class="icone-grande" aria-hidden="true">🦸</div>
+    <p class="mini-titulo">Arquivo da S.H.I.E.L.D.</p>
+
+    <h2 id="etapa2-titulo">Sua missão</h2>
+
+    <p class="texto">
+      O agente Bernardo está completando <strong>4 anos</strong>
+      e precisa dos seus melhores aliados.
+    </p>
+
+    <ul class="cards-missao" role="list">
+      <li class="card-missao">
+        <span aria-hidden="true">🛡️</span>
+        <strong>Coragem</strong>
+        <small>Para encarar grandes aventuras.</small>
+      </li>
+      <li class="card-missao">
+        <span aria-hidden="true">⚡</span>
+        <strong>Energia</strong>
+        <small>Para brincar e se divertir.</small>
+      </li>
+      <li class="card-missao">
+        <span aria-hidden="true">🤝</span>
+        <strong>Amizade</strong>
+        <small>Para tornar o dia inesquecível.</small>
+      </li>
+    </ul>
+
+    <p class="alerta" role="note">
+      <span aria-hidden="true">⚠️</span>
+      Sua presença é muito importante!
+    </p>
+
+    <div class="navegacao">
+      <button class="btn-secundario" type="button" data-acao="anterior">
+        <span aria-hidden="true">←</span> Voltar
+      </button>
+      <button class="btn-principal" type="button" data-acao="proxima">
+        Próximo <span aria-hidden="true">→</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ETAPA 3 — DATA E LOCAL -->
+<section
+  class="etapa"
+  id="etapa-3"
+  data-etapa="3"
+  aria-labelledby="etapa3-titulo"
+>
+  <div class="etapa-conteudo">
+    <div class="icone-grande" aria-hidden="true">📋</div>
+    <p class="mini-titulo">Dados da missão</p>
+
+    <h2 id="etapa3-titulo">Quando e onde?</h2>
+
+    <dl class="informacoes">
+      <div class="informacao">
+        <dt><span aria-hidden="true">📅</span> Data</dt>
+        <dd><time datetime="2026-12-12">12 de dezembro de 2026</time></dd>
+      </div>
+      <div class="informacao">
+        <dt><span aria-hidden="true">⏰</span> Horário</dt>
+        <dd><time datetime="12:00">12h00</time></dd>
+      </div>
+      <div class="informacao">
+        <dt><span aria-hidden="true">📍</span> Local</dt>
+        <dd>Minha casa</dd>
+      </div>
+    </dl>
+
+    <button
+      class="btn-localizacao"
+      id="btnLocalizacao"
+      type="button"
+      data-acao="localizacao"
+    >
+      <span aria-hidden="true">📍</span> Ver localização
+    </button>
+
+    <div class="navegacao">
+      <button class="btn-secundario" type="button" data-acao="anterior">
+        <span aria-hidden="true">←</span> Voltar
+      </button>
+      <button class="btn-principal" type="button" data-acao="proxima">
+        Próximo <span aria-hidden="true">→</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ETAPA 4 — CONFIRMAÇÃO -->
+<section
+  class="etapa"
+  id="etapa-4"
+  data-etapa="4"
+  aria-labelledby="etapa4-titulo"
+>
+  <div class="etapa-conteudo confirmacao" id="confirmacao">
+    <div class="icone-grande" aria-hidden="true">🎉</div>
+    <p class="mini-titulo">Última etapa</p>
+
+    <h2 id="etapa4-titulo">Você aceita a missão?</h2>
+
+    <p class="texto">
+      Bernardo está esperando seus melhores aliados.
+    </p>
+
+    <div class="contador" aria-live="polite">
+      <p>A missão começa em</p>
+      <div class="countdown" role="timer">
+        <div class="tempo">
+          <strong id="dias">00</strong>
+          <span>dias</span>
+        </div>
+        <div class="tempo">
+          <strong id="horas">00</strong>
+          <span>horas</span>
+        </div>
+        <div class="tempo">
+          <strong id="minutos">00</strong>
+          <span>min</span>
+        </div>
+        <div class="tempo">
+          <strong id="segundos">00</strong>
+          <span>seg</span>
+        </div>
+      </div>
+    </div>
+
+    <button
+      class="btn-principal btn-confirmar"
+      id="btnConfirmarFinal"
+      type="button"
+      data-acao="confirmar"
+    >
+      <span aria-hidden="true">✅</span> Confirmar presença
+    </button>
+
+    <button
+      class="btn-compartilhar"
+      id="btnCompartilhar"
+      type="button"
+      data-acao="compartilhar"
+    >
+      <span aria-hidden="true">📲</span> Compartilhar convite
+    </button>
+
+    <button
+      class="btn-secundario voltar-final"
+      type="button"
+      data-acao="anterior"
+    >
+      <span aria-hidden="true">←</span> Voltar
+    </button>
+  </div>
+</section>
+
+<!-- RODAPÉ -->
+<footer>
+  <strong>
+    <span aria-hidden="true">⚡</span>
+    Bernardo Furtado
+    <span aria-hidden="true">⚡</span>
+  </strong>
+  <span>4 anos • Uma aventura inesquecível</span>
+</footer>
+</main>
+
+<noscript>
+<p class="noscript-aviso">
+Este convite precisa de JavaScript para funcionar.
+Entre em contato diretamente com a família do Bernardo.
+</p>
+</noscript>
+
+<script src="script.js"></script>
 </body>
 </html>
