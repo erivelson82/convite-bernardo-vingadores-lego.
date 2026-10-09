@@ -1,9 +1,3 @@
-const CONFIG = Object.freeze({
-  dataFesta: "2026-11-29T12:00:00",   // ← data da festa
-  whatsapp: "5511999998888",          // ← seu número com DDI+DDD
-  localizacao: "https://maps.google.com/?q=Seu+Endereco",  // ← link do Maps
-  ...
-});
 /* =====================================================
    BERNARDO 4 ANOS · VINGADORES LEGO
    Sistema de convite interativo — 4 etapas
@@ -17,10 +11,9 @@ const CONFIG = Object.freeze({
   ===================================================== */
 
   const CONFIG = Object.freeze({
-    dataFesta: "2026-11-29T12:00:00",
-    whatsapp: "", // Ex.: "5511999998888" (DDI+DDD+número, sem símbolos)
-    localizacao:
-      "https://www.google.com/maps/search/?api=1&query=Minha+Casa",
+    dataFesta: "2026-12-12T12:00:00", // Alinhado com a data do HTML (12/12/2026)
+    whatsapp: "5511999998888",         // Substitua pelo número real com DDI + DDD + número (sem símbolos)
+    localizacao: "https://www.google.com/maps/search/?api=1&query=Minha+Casa",
     urlConvite: window.location.href,
   });
 
@@ -40,7 +33,7 @@ const CONFIG = Object.freeze({
       texto:
         "🦸⚡ VOCÊ FOI CONVOCADO! ⚡🦸\n\n" +
         "Bernardo está completando 4 anos! 🎂\n\n" +
-        "📅 12 de Novembro de 2026\n" +
+        "📅 12 de Dezembro de 2026\n" +
         "⏰ 12:00\n" +
         "📍 Minha casa\n\n" +
         "Venha participar dessa missão especial! 🚀",
@@ -69,11 +62,7 @@ const CONFIG = Object.freeze({
      HELPERS
   ===================================================== */
 
-  const $ = (sel, ctx = document) => ctx.querySelector(sel);
-  const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
-
-  const on = (el, evt, handler, opts) =>
-    el && el.addEventListener(evt, handler, opts);
+  const $ = (sel, ctx = document) => ctx.querySelector(sel);   const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
   /* =====================================================
      TOAST
@@ -121,26 +110,8 @@ const CONFIG = Object.freeze({
   };
 
   const atualizarProgresso = (etapa) => {
-    $$(".ponto").forEach((ponto) => {
-      const num = Number(ponto.dataset.etapa);
-      const ativo = num === etapa;
-
-      ponto.classList.toggle("ativo", ativo);
-
-      if (ativo) {
-        ponto.setAttribute("aria-current", "step");
-      } else {
-        ponto.removeAttribute("aria-current");
-      }
-    });
-  };
-
-  const mostrarEtapa = (numero) => {
-    if (numero < 1 || numero > TOTAL_ETAPAS) return;
-
-    state.etapaAtual = numero;
-
-    $$(".etapa").forEach((el) => el.classList.remove("ativa"));
+    $$(".ponto").forEach((ponto) => {       const num = Number(ponto.dataset.etapa);       const ativo = num === etapa;        ponto.classList.toggle("ativo", ativo);        if (ativo) {         ponto.setAttribute("aria-current", "step");       } else {         ponto.removeAttribute("aria-current");       }     });   };    const mostrarEtapa = (numero) => {     if (numero < 1 \vert{}\vert{} numero > TOTAL_ETAPAS) return;      state.etapaAtual = numero;      $$
+(".etapa").forEach((el) => el.classList.remove("ativa"));
 
     const etapa = $(`#etapa-${numero}`);
     if (!etapa) return;
